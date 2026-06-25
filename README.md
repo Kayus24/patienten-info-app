@@ -1,23 +1,27 @@
-# Patienteninformation
+# Patienten-Info-App
 
-Statische HTML-App fuer Patienteninformationen. Das Repository ist fuer GitHub Pages vorbereitet.
+Mobile Patienteninformation als statische HTML-App fuer GitHub Pages.
 
-## Inhalt ersetzen
+## Live-Adresse
 
-Die von GPT erstellte HTML-Datei kann als `index.html` in dieses Repository kopiert werden. Danach:
+https://kayus24.github.io/patienten-info-app/
 
-```powershell
-git add index.html
-git commit -m "Update patient information app"
-git push
-```
+## Inhalt
 
-## QR-Code
+- `index.html` enthaelt die komplette Smartphone-App.
+- Die App ist als Wartezimmer-Info gedacht.
+- Quellen werden direkt an Aussagen gekoppelt.
+- Die Texte ersetzen keine individuelle Untersuchung.
 
-Der QR-Code fuer die veroeffentlichte App liegt in `qr-code.png`.
+## GitHub Pages
 
-App-URL: <https://kayus24.github.io/patienten-info-app/>
+Falls die Seite noch nicht online ist:
 
-## Datenschutz
+1. Repository oeffnen
+2. Settings -> Pages
+3. Source: Deploy from a branch
+4. Branch: main
+5. Folder: /root
+6. Save
 
-Keine personenbezogenen Patientendaten oder Befunde in diesem oeffentlichen Repository speichern.
+Danach die Live-Adresse fuer den QR-Code verwenden.
