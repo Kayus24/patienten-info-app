@@ -1,146 +1,28 @@
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#176b5d" />
-    <title>Patienteninformation</title>
-    <link rel="manifest" href="manifest.webmanifest" />
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: Arial, Helvetica, sans-serif;
-        --bg: #f4f7f6;
-        --ink: #18211f;
-        --muted: #5d6a67;
-        --brand: #176b5d;
-        --brand-dark: #0f4f45;
-        --panel: #ffffff;
-        --line: #dce5e2;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-        background: var(--bg);
-        color: var(--ink);
-      }
-
-      main {
-        width: min(100%, 760px);
-        margin: 0 auto;
-        padding: 28px 18px 42px;
-      }
-
-      header {
-        padding: 28px 0 18px;
-      }
-
-      h1 {
-        margin: 0 0 10px;
-        font-size: clamp(2rem, 8vw, 3.4rem);
-        line-height: 1.05;
-      }
-
-      p {
-        line-height: 1.6;
-      }
-
-      .intro {
-        margin: 0;
-        color: var(--muted);
-        font-size: 1.08rem;
-      }
-
-      section {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        margin-top: 16px;
-        padding: 18px;
-      }
-
-      h2 {
-        margin: 0 0 10px;
-        font-size: 1.25rem;
-      }
-
-      ul {
-        margin: 12px 0 0;
-        padding-left: 20px;
-      }
-
-      li + li {
-        margin-top: 8px;
-      }
-
-      .button {
-        display: inline-block;
-        margin-top: 14px;
-        padding: 12px 16px;
-        border-radius: 6px;
-        background: var(--brand);
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: 700;
-      }
-
-      .button:focus,
-      .button:hover {
-        background: var(--brand-dark);
-      }
-
-      footer {
-        margin-top: 22px;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>Patienteninformation</h1>
-        <p class="intro">
-          Diese Seite ist als mobile Informations-App vorbereitet. Ersetzen Sie
-          diese Platzhalterinhalte durch Ihre fertige HTML-Datei.
-        </p>
-      </header>
-
-      <section>
-        <h2>Vorbereitung auf Ihren Termin</h2>
-        <p>
-          Bringen Sie bitte relevante Befunde, Ihre Versichertenkarte und bequeme
-          Kleidung mit. Wenn Sie akute Beschwerden oder neue Symptome haben,
-          informieren Sie das Praxisteam vor der Behandlung.
-        </p>
-      </section>
-
-      <section>
-        <h2>Installation auf dem Smartphone</h2>
-        <ul>
-          <li>QR-Code scannen und diese Seite im Browser &ouml;ffnen.</li>
-          <li>Im Browser-Men&uuml; die Option zum Hinzuf&uuml;gen zum Startbildschirm w&auml;hlen.</li>
-          <li>Die Informationen sind danach wie eine App erreichbar.</li>
-        </ul>
-        <a class="button" href="./" aria-label="Startseite erneut laden">App &ouml;ffnen</a>
-      </section>
-
-      <footer>
-        Hinweis: Bitte ver&ouml;ffentlichen Sie hier keine personenbezogenen
-        Patientendaten.
-      </footer>
-    </main>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./service-worker.js");
-        });
-      }
-    </script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Schmerz verstehen · Patienteninfo</title>
+<meta name="description" content="Mobile Patienteninformation zu Schmerz, Verspannung, MRT-Befunden und aktiver Behandlung.">
+<style>
+:root{--g:#396b66;--y:#FFEA50;--bg:#f6f7f4;--ink:#13211f;--mut:#63706d;--card:#fff;--line:#e3e8e4;--blue:#dcecff;--r:28px}*{box-sizing:border-box}body{margin:0;background:linear-gradient(#fbfcf8,#edf3ee);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);line-height:1.45}.app{max-width:520px;margin:auto;min-height:100svh;padding:18px 16px 96px}.badge{display:inline-flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--g);font-weight:800;font-size:12px}.dot{width:8px;height:8px;border-radius:50%;background:var(--y);box-shadow:0 0 0 4px #ffea5040}h1{font-size:35px;line-height:.97;letter-spacing:-.05em;margin:17px 0 10px}h2{font-size:20px;line-height:1.12;letter-spacing:-.03em;margin:0 0 8px}p{margin:0}.lead{color:#40514e;font-size:16px;max-width:36ch}.tabs{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:min(520px,calc(100% - 22px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:#ffffffdc;backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:25px;padding:8px;box-shadow:0 18px 45px #12211f24;z-index:10}.tab{border:0;border-radius:18px;background:transparent;color:var(--mut);font-weight:800;padding:8px 4px;font-size:12px}.tab b{display:block;font-size:18px}.tab.on{background:var(--g);color:#fff}.screen{display:none}.screen.on{display:block}.card{background:#fffffff0;border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:14px 0;box-shadow:0 15px 40px #13211f14}.topic{cursor:pointer}.top{display:flex;justify-content:space-between;gap:14px}.tag{flex:0 0 auto;font-size:12px;font-weight:850;color:var(--g);background:#396b6614;border-radius:999px;padding:6px 9px;height:max-content}.summary{font-size:15px;color:#344845}.more{display:none;border-top:1px solid var(--line);margin-top:14px;padding-top:14px;color:#3c4d49;font-size:15px}.topic.open .more{display:block}.btn{border:0;border-radius:16px;background:#eff6f4;color:var(--g);font-weight:850;padding:11px 13px;margin:12px 8px 0 0}.search{width:100%;border:1px solid var(--line);background:#fff;border-radius:20px;font-size:16px;padding:14px 15px;margin:18px 0 4px;outline:none}.chips{display:flex;gap:8px;overflow:auto;padding:10px 0 4px;scrollbar-width:none}.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;color:#314541;font-weight:750}.chip.on{background:var(--g);color:white;border-color:var(--g)}.mark{background:linear-gradient(180deg,transparent 8%,var(--blue) 8%,var(--blue) 92%,transparent 92%);border-radius:7px}.note{background:#fff8cd;border-color:#ffea50;box-shadow:none}.warn{border-left:5px solid #b52d2d}.list{padding-left:18px;margin:10px 0 0}.list li{margin:8px 0}.small{font-size:12px;color:var(--mut);padding:12px 2px}.sheetBg{display:none;position:fixed;inset:0;background:#0003;z-index:20}.sheetBg.show{display:block}.sheet{display:none;position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(520px,100%);z-index:21;background:#fff;border-radius:30px 30px 0 0;padding:18px 18px max(24px,env(safe-area-inset-bottom));box-shadow:0 -26px 60px #0003}.sheet.show{display:block}.grab{width:48px;height:5px;border-radius:999px;background:#d9dfda;margin:0 auto 14px}.claim{background:#f3f8f6;border:1px solid var(--line);border-radius:18px;padding:12px;margin:12px 0}.link{color:var(--g);font-weight:850;text-decoration:none}.close{width:100%;border:0;background:var(--ink);color:#fff;border-radius:18px;padding:13px;font-weight:850;margin-top:14px}.source{border:1px solid var(--line);border-radius:20px;padding:14px;margin:10px 0;background:#fff}.source b{display:block;margin-bottom:4px}.empty{display:none;color:var(--mut);padding:18px 4px}
+</style>
+</head>
+<body>
+<main class="app">
+<header><div class="badge"><span class="dot"></span>Physiotherapie · transparent</div><h1>Schmerz kurz verstehen.</h1><p class="lead">Schnelle Antworten für die Wartezeit. Jede Kernaussage zeigt, worauf sie sich stützt und wo die Grenze der Aussage liegt.</p></header>
+<section id="home" class="screen on"><input id="q" class="search" placeholder="Suchen: MRT, Verspannung, Kinder, Autismus …" oninput="filter()"><div class="chips"><button class="chip on" onclick="cat('alle',this)">Alle</button><button class="chip" onclick="cat('grund',this)">Grundlagen</button><button class="chip" onclick="cat('ruecken',this)">Nacken/Rücken</button><button class="chip" onclick="cat('menschen',this)">Menschen</button><button class="chip" onclick="cat('therapie',this)">Behandlung</button></div><div id="topics"></div><p id="empty" class="empty">Dazu ist in dieser Kurzversion noch kein Eintrag hinterlegt.</p></section>
+<section id="warn" class="screen"><article class="card warn"><h2>Wann nicht nur weiterlesen?</h2><p class="summary">Diese Seite ersetzt keine Untersuchung. Neue, starke oder ungewohnte Beschwerden sollten individuell abgeklärt werden.</p><ul class="list"><li>neue deutliche Kraftminderung, starke Taubheit oder Kontrollverlust über Blase/Darm</li><li>Fieber, schwere Krankheitssymptome oder Verdacht auf Infektion</li><li>Unfall, Sturz oder Verdacht auf Fraktur</li><li>unerklärter Gewichtsverlust, Krebs-Vorgeschichte oder deutliche Verschlechterung</li><li>Brustdruck, Atemnot, Schwindel oder neurologische Ausfälle</li></ul><button class="btn" onclick="src('imaging')">Quelle zeigen</button></article><article class="card note"><b>Ein Warnzeichen ist keine Diagnose.</b><p class="summary">Es bedeutet: gezielter prüfen lassen, statt nur einen allgemeinen Infotext zu lesen.</p></article></section>
+<section id="sources" class="screen"><article class="card"><h2>Quellenlogik</h2><p class="summary">Die App koppelt Aussage, Quelle und Einschränkung. So bleibt sichtbar, was eine Studie oder Leitlinie wirklich stützt.</p></article><div id="sourceList"></div></section>
+<section id="about" class="screen"><article class="card"><h2>Über diese Info</h2><p class="summary">Die Texte sollen Schmerz ernst nehmen, verständlich erklären und gleichzeitig unnötige Angst vermeiden. Nicht esoterisch, nicht dramatisierend, nicht als Ersatz für Diagnostik.</p><button class="btn" onclick="src('iasp')">Grundlage zeigen</button></article></section>
+</main>
+<nav class="tabs"><button class="tab on" onclick="screen('home',this)"><b>⌂</b>Themen</button><button class="tab" onclick="screen('warn',this)"><b>!</b>Warnung</button><button class="tab" onclick="screen('sources',this)"><b>↗</b>Quellen</button><button class="tab" onclick="screen('about',this)"><b>i</b>Info</button></nav>
+<div id="bg" class="sheetBg" onclick="closeS()"></div><aside id="sheet" class="sheet"><div class="grab"></div><h2 id="st"></h2><p id="sw" class="summary"></p><div id="sc" class="claim"></div><p id="sl" class="summary"></p><p style="margin-top:12px"><a id="sa" class="link" target="_blank" rel="noopener">Quelle öffnen</a></p><button class="close" onclick="closeS()">Schließen</button></aside>
+<script>
+const S={iasp:['IASP Schmerzdefinition','https://www.iasp-pain.org/resources/terminology/','Grundlage dafür, dass Schmerz real, persönlich und biopsychosozial beeinflusst ist.','Schmerz kann mit tatsächlichem oder möglichem Gewebeschaden verbunden sein oder diesem ähneln.','Daraus folgt nicht, dass jeder Schmerz harmlos ist. Schmerz und Gewebeschaden sind nicht dasselbe.'],raja:['Raja et al. 2020','https://pmc.ncbi.nlm.nih.gov/articles/PMC7680716/','Hintergrund zur überarbeiteten IASP-Definition.','Schmerz hat sensorische, emotionale und soziale Dimensionen.','Nicht als Einzeldiagnose für eine konkrete Beschwerde verwenden.'],chronic:['Treede et al. 2019','https://pubmed.ncbi.nlm.nih.gov/30586067/','Stützt die zeitliche Einordnung chronischer Schmerzen.','Chronischer Schmerz hält länger als etwa drei Monate an oder kehrt wieder.','Die Dauer erklärt noch nicht automatisch die Ursache.'],sens:['Curatolo et al. 2023','https://pmc.ncbi.nlm.nih.gov/articles/PMC10716881/','Stützt die Erklärung eines alarmbereiteren Schmerzsystems.','Normale oder schwache Reize können verstärkt verarbeitet werden.','Sensibilisierung ist ein Modell, keine sichere Einzeldiagnose.'],caution:['Velasco et al. 2024','https://pubmed.ncbi.nlm.nih.gov/39278607/','Schützt vor Überinterpretation.','Zentrale Sensibilisierung sollte nicht als einfache Diagnose verkauft werden.','Nicht alles bei chronischem Schmerz ist automatisch Sensibilisierung.'],tension:['Dieterich et al. 2020','https://pubmed.ncbi.nlm.nih.gov/31905095/','Stützt die Trennung von gefühlter und messbarer Steifigkeit.','Bei chronischem unspezifischem Nackenschmerz kann subjektive Steifigkeit stärker sein, ohne klare messbare Muskelsteifigkeit.','Heißt nicht, dass nie lokale Steifigkeitsunterschiede existieren.'],tension2:['Opara et al. 2023','https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2023.1172514/full','Ergänzt die differenzierte Sicht.','Der obere Trapezius zeigte kleine erhöhte Steifigkeit; andere Daten waren weniger eindeutig.','Nicht als Hauptbotschaft „der Muskel ist hart“ nutzen.'],mri:['Brinjikji et al. 2015','https://pmc.ncbi.nlm.nih.gov/articles/PMC4464797/','Stützt, dass MRT-Befunde häufig auch ohne Schmerzen vorkommen.','Degenerative Befunde sind bei schmerzfreien Menschen häufig und nehmen mit Alter zu.','Befunde sind nicht egal; sie müssen klinisch passen.'],imaging:['Hall et al. 2021','https://pmc.ncbi.nlm.nih.gov/articles/PMC8023332/','Stützt zurückhaltende Bildgebung bei unkompliziertem Rückenschmerz.','Routine-Bildgebung ist ohne konkreten Verdacht oft nicht hilfreich.','Bei Warnzeichen oder passendem Verdacht kann Bildgebung wichtig sein.'],who:['WHO 2023 Low Back Pain Guideline','https://www.who.int/publications/i/item/9789240081789','Stützt einen mehrdimensionalen, nicht-operativen Ansatz.','Edukation, Selbstmanagement und Übungsprogramme sind wichtige Bausteine.','Gilt besonders für chronischen primären unteren Rückenschmerz.'],exercise:['Hayden et al. 2021','https://pmc.ncbi.nlm.nih.gov/articles/PMC8477273/','Stützt Übung als aktiven Behandlungsbaustein.','Übung ist bei chronischem unteren Rückenschmerz wahrscheinlich wirksam.','Kein Wunderheilmittel; Effekte sind realistisch einzuordnen.'],neck:['JOSPT Neck Pain Guideline 2017','https://www.jospt.org/doi/10.2519/jospt.2017.0302','Stützt aktive und differenzierte Behandlung bei Nackenschmerz.','Je nach Situation können Bewegung, Kräftigung, Ausdauer und manuelle Therapie sinnvoll sein.','Nicht jede Person braucht dieselbe Übung.'],pne:['Siddall et al. 2022','https://pubmed.ncbi.nlm.nih.gov/33863860/','Stützt Schmerzedukation in Kombination mit Bewegung.','Schmerzedukation plus Übung kann kurzfristig bessere Ergebnisse liefern als Übung allein.','Aufklärung allein ist selten die ganze Behandlung.'],kids:['Canadian Paediatric Society 2022','https://cps.ca/en/documents/position/pain-assessment-and-management','Stützt altersgerechtes Schmerzassessment bei Kindern.','Kindlicher Schmerz soll ernst genommen und entwicklungsangemessen bewertet werden.','Kinder lernen Einordnung, aber Schmerz ist deshalb nicht unecht.'],social:['Stone et al. 2018','https://pmc.ncbi.nlm.nih.gov/articles/PMC5889361/','Stützt den Einfluss sozialer Lernprozesse.','Bezugspersonen können Schmerzbewältigung und Schmerzverhalten beeinflussen.','Nicht daraus machen: Kinder weinen nur wegen Erwachsenen.'],autism:['Bogdanova et al. 2022','https://pmc.ncbi.nlm.nih.gov/articles/PMC9352888/','Stützt differenzierte Sprache zu Autismus und Schmerz.','Schmerz bei Autismus ist heterogen; Hypo- und Hypersensitivität können vorkommen.','Nicht pauschal von Schmerzunempfindlichkeit ausgehen.'],culture:['Rogger et al. 2023','https://pmc.ncbi.nlm.nih.gov/articles/PMC10462520/','Stützt kulturelle Einflüsse auf Schmerzkommunikation.','Kultur kann Schmerzerfahrung, Ausdruck und Versorgung beeinflussen.','Kultur ersetzt keine individuelle Untersuchung.'],nocebo:['O’Keeffe et al. 2022','https://pmc.ncbi.nlm.nih.gov/articles/PMC9545091/','Stützt vorsichtige Diagnosesprache.','Labels wie Degeneration oder Disc Bulge können Überzeugungen und Behandlungswünsche beeinflussen.','Diagnosen nicht verschweigen, sondern ruhig erklären.']};
+const T=[['grund','Schmerz ist echt – aber nicht immer Schaden','Grundlage','Schmerz ist real. Er ist aber nicht immer ein direkter Messwert dafür, dass gerade Gewebe beschädigt wird.','Das Nervensystem bewertet Reize aus dem Körper, frühere Verletzungen, Entzündung, Belastung, Schlaf, Stress, Angst, Aufmerksamkeit, Erwartungen, Sprache, Kultur und Erfahrung. Das heißt nicht: „Da ist nichts“. Es heißt: Der Haupttreiber muss nicht immer ein aktueller Schaden sein.',['iasp','raja']],['grund','Warum Schmerz manchmal länger bleibt','> 3 Monate','Wenn Schmerz länger als etwa drei Monate anhält oder wiederkehrt, spricht man häufig von chronischem Schmerz.','Bei chronischen Schmerzen kann der Schmerz selbst zum Hauptproblem werden. Trotzdem sollte geprüft werden, ob eine klare aktuelle Ursache, Warnzeichen oder mehrere aufrechterhaltende Faktoren vorliegen.',['chronic','sens','caution']],['ruecken','Verspannung heißt nicht automatisch „harter Muskel“','Nacken','Das Gefühl von Verspannung ist real. Es bedeutet aber nicht automatisch, dass der Muskel beschädigt, verkürzt oder dauerhaft verhärtet ist.','Verspannung kann durch Schutzspannung, Druckempfindlichkeit, Müdigkeit, Stress, Kiefer- oder Schulteraktivität, ungewohnte Belastung und ein alarmbereiteres Schmerzsystem entstehen.',['tension','tension2']],['ruecken','MRT-Befunde müssen zu Symptomen passen','Befunde','Ein MRT-Befund erklärt Schmerzen nicht automatisch. Viele Veränderungen findet man auch bei Menschen ohne Schmerzen.','Bildgebung ist wichtig bei Warnzeichen oder konkretem Verdacht. Bei unkompliziertem Rückenschmerz ist Routine-Bildgebung oft nicht hilfreich und kann verunsichern. Befunde müssen zur Untersuchung und zu den Symptomen passen.',['mri','imaging']],['therapie','Was hilft oft bei Nacken- und Rückenschmerz?','Aktiv','Meist hilft ein Plan aus Verstehen, dosierter Bewegung, Belastungsaufbau und weniger Angst vor Bewegung.','Passive Maßnahmen können kurzfristig unterstützen. Sie sollten aber nicht als alleinige Reparatur verkauft werden. Bei länger bestehenden Beschwerden sind Edukation, Selbstmanagement, Kraft, Ausdauer, Schlaf, Stress und Alltag oft gemeinsam relevant.',['who','exercise','neck','pne']],['menschen','Kinder fühlen Schmerz und lernen Einordnung','Kinder','Kinder fühlen Schmerz. Gleichzeitig lernen sie durch Erfahrung, Sprache und Bezugspersonen, wie sie Schmerz einordnen und zeigen.','Eine ruhige, unterstützende Reaktion kann helfen, Schmerz weniger bedrohlich zu bewerten. Das bedeutet nicht, dass der Schmerz nicht echt war.',['kids','social','iasp']],['menschen','Autismus: Schmerz kann anders gezeigt werden','Autismus','Autistische Menschen können Schmerz anders wahrnehmen, einordnen, zeigen oder kommunizieren.','Manche reagieren weniger sichtbar, manche empfindlicher, manche anders als erwartet. Deshalb sollte Schmerz ernst genommen werden, auch wenn die Reaktion nicht typisch aussieht.',['autism']],['menschen','Kultur prägt Schmerzausdruck – ist aber keine Diagnose','Kultur','Kultur, Familie, Sprache und medizinische Vorerfahrungen beeinflussen, wie Menschen Schmerz beschreiben und behandeln lassen.','Für die Behandlung zählt trotzdem die konkrete Person. Kultur kann mitprägen, ersetzt aber keine individuelle Untersuchung.',['culture']],['therapie','Worte können beruhigen oder bedrohen','Sprache','Diagnosen sollen erklären, ohne unnötig Angst zu machen.','Begriffe wie „kaputt“, „verschlissen“ oder „Bandscheibe raus“ können bedrohlich wirken, besonders wenn nicht erklärt wird, dass solche Befunde auch bei Menschen ohne Schmerzen vorkommen.',['nocebo','mri']]];
+let C='alle';function draw(){let box=document.getElementById('topics');box.innerHTML='';T.forEach((t,i)=>{if(C!='alle'&&t[0]!=C)return;let e=document.createElement('article');e.className='card topic';e.dataset.txt=t.join(' ').toLowerCase();e.innerHTML=`<div class="top"><div><h2>${t[1]}</h2><p id="claim${i}" class="summary">${t[3]}</p></div><span class="tag">${t[2]}</span></div><div class="more"><p>${t[4]}</p>${t[5].map(k=>`<button class="btn" onclick="event.stopPropagation();src('${k}','claim${i}')">Quelle</button>`).join('')}</div>`;e.onclick=()=>e.classList.toggle('open');box.appendChild(e)});filter()}function cat(c,b){C=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');draw()}function filter(){let q=(document.getElementById('q')?.value||'').toLowerCase(),n=0;document.querySelectorAll('.topic').forEach(e=>{let ok=!q||e.dataset.txt.includes(q);e.style.display=ok?'block':'none';if(ok)n++});document.getElementById('empty').style.display=n?'none':'block'}function screen(id,b){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));b.classList.add('on');window.scrollTo(0,0);if(id=='sources')sources()}function src(k,mark){let s=S[k];document.querySelectorAll('.mark').forEach(x=>x.classList.remove('mark'));if(mark)document.getElementById(mark)?.classList.add('mark');st.textContent=s[0];sw.textContent=s[2];sc.textContent=s[3];sl.textContent='Grenze/Kontext: '+s[4];sa.href=s[1];bg.classList.add('show');sheet.classList.add('show')}function closeS(){bg.classList.remove('show');sheet.classList.remove('show')}function sources(){let x=document.getElementById('sourceList');x.innerHTML='';Object.values(S).forEach(s=>x.innerHTML+=`<article class="source"><b>${s[0]}</b><p class="summary">${s[2]}</p><p style="margin-top:8px"><a class="link" href="${s[1]}" target="_blank" rel="noopener">Quelle öffnen</a></p></article>`)}draw();
+</script>
+</body>
 </html>
