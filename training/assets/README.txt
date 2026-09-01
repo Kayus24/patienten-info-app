@@ -1,0 +1,1 @@
+Exercise assets are served by the training page. The current page uses an embedded image bundle for maximum mobile-browser compatibility.
