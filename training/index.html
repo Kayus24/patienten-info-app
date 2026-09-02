@@ -3,244 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Trainingsregeln ¬∑ Working Motion</title>
-<meta name="description" content="Trainingsregeln und pers√∂nliche √úbungsauswahl f√ºr Patient:innen.">
+<title>Trainingsregeln - Working Motion</title>
 <style>
-:root{
-  --orange:#f36c21;--orange-soft:#fff1e8;--navy:#102b50;--bg:#f4f7f8;--card:#fff;
-  --line:#dbe3e9;--mut:#647383;--green:#2d7f4f;--blue:#2870ad;--red:#c93434;
-  --shadow:0 14px 34px rgba(16,43,80,.09);--r:24px;--max:1180px
-}
-*{box-sizing:border-box;min-width:0}
-html,body{max-width:100%;overflow-x:hidden}
-body{margin:0;background:linear-gradient(180deg,#fbfcfd 0,#eef3f5 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--navy)}
-button{font:inherit}
-.app{width:min(var(--max),calc(100% - 24px));margin:auto;padding:18px 0 110px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.02em;margin:2px 4px 14px}
-.brandMark{display:inline-flex;gap:4px}
-.brandMark i{display:block;width:13px;height:8px;background:var(--orange);transform:skewX(-32deg);border-radius:2px}
-.hero{background:#fff;border:1px solid var(--line);border-radius:30px;padding:clamp(18px,3vw,34px);box-shadow:var(--shadow)}
-.kicker{font-size:.78rem;font-weight:900;letter-spacing:.13em;color:var(--orange);text-transform:uppercase}
-h1{font-size:clamp(2.35rem,7vw,5rem);line-height:.95;letter-spacing:-.055em;margin:.35rem 0 .55rem;overflow-wrap:anywhere}
-.heroSub{margin:0;color:#41536a;font-size:clamp(1rem,2vw,1.25rem)}
-.rulesGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
-.rule{border:1.5px solid var(--line);border-radius:20px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:12px;min-height:230px;overflow:hidden}
-.rule.green{border-color:#81b596;background:#f8fcf9}.rule.blue{border-color:#86afd2;background:#f8fbfe}.rule.orange{border-color:#efa36f;background:#fffaf6}.rule.red{border-color:#e18a8a;background:#fff9f9}
-.ruleHead{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;flex:0 0 auto}
-.green .num{background:var(--green)}.blue .num{background:var(--blue)}.orange .num{background:var(--orange)}.red .num{background:var(--red)}
-.rule h2{font-size:1rem;margin:0;letter-spacing:.02em}
-.green h2{color:var(--green)}.blue h2{color:var(--blue)}.orange h2{color:var(--orange)}.red h2{color:var(--red)}
-.rule p,.rule li{margin:0;color:#27394e;font-size:.94rem;line-height:1.42;overflow-wrap:anywhere;hyphens:auto}
-.rule ul{margin:0;padding-left:1.1rem;display:grid;gap:7px}
-.painScale{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;align-items:end}
-.painScale span{font-size:.68rem;text-align:center;color:#4e5b68}
-.painLine{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--green) 0 50%,#9ba3ab 50% 100%);grid-column:1/-1;position:relative}
-.painLine:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 3px #fff}
-.section{margin-top:30px}
-.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 2px 14px}
-.sectionHead h2{font-size:clamp(1.8rem,4vw,3rem);margin:.2rem 0 0;letter-spacing:-.04em}
-.count{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--mut);font-size:.88rem;font-weight:900;white-space:normal;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.card{border:1px solid var(--line);background:#fff;border-radius:24px;padding:16px;box-shadow:0 8px 24px rgba(16,43,80,.05);transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease;color:var(--navy);cursor:pointer;text-align:left;overflow:hidden}
-.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(16,43,80,.09)}
-.card.sel{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-7px);box-shadow:0 18px 38px rgba(243,108,33,.26)}
-.cardHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-.card h3{font-size:1.15rem;line-height:1.15;margin:0;overflow-wrap:anywhere}
-.tag{border:1px solid currentColor;border-radius:999px;padding:6px 9px;font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;opacity:.72;overflow-wrap:anywhere}
-.exGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.exercise{background:#f7f9fb;border:1px solid #e5eaee;border-radius:16px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:9px;min-height:0;overflow:hidden}
-.sel .exercise{background:#fff;color:var(--navy);border-color:rgba(255,255,255,.75)}
-.thumb{width:100%;aspect-ratio:4/3;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden}
-.exercise img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;transform:scale(1.10);transform-origin:center}
-.exercise img[alt="Trizeps-Maschine"]{transform:scale(1.34)}
-.exercise img[alt="Kniestrecker"]{transform:scale(1.20)}
-.exercise img[alt="Beinpresse"]{transform:scale(1.16)}
-.exercise img[alt="Kniebeuger"]{transform:scale(1.14)}
-.exercise img[alt="Fliegende"]{transform:scale(1.08)}
-.exercise b{font-size:.82rem;line-height:1.2;text-align:center;overflow-wrap:anywhere;hyphens:auto}
-.selectedPanel{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 8px 24px rgba(16,43,80,.05)}
-.selectedPanel h3{margin:0 0 8px;font-size:1.05rem}
-.selectedList{display:flex;flex-wrap:wrap;gap:8px}
-.selChip{background:#f3f6f8;border-radius:999px;padding:8px 11px;color:#34495f;font-size:.8rem;font-weight:800;overflow-wrap:anywhere}
-.footerHint{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px 16px;color:#526172;font-size:.88rem;line-height:1.45}
-.fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:64px;height:64px;border-radius:50%;border:0;background:var(--orange);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 15px 38px rgba(243,108,33,.38);z-index:40}
-.fab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.modal{position:fixed;inset:0;background:rgba(10,24,40,.48);backdrop-filter:blur(4px);display:none;place-items:center;padding:18px;z-index:60}
-.modal.on{display:grid}
-.sheet{position:relative;width:min(470px,100%);background:#fff;border-radius:25px;padding:25px;box-shadow:0 28px 70px rgba(0,0,0,.24)}
-.sheet h3{margin:0 0 7px;font-size:1.45rem}
-.sheet p{margin:0;color:var(--mut);line-height:1.45}
-.close{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:2rem;color:#84909b;cursor:pointer}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-.actions button{border:0;border-radius:14px;padding:13px;font-weight:900;cursor:pointer}
-.primary{background:var(--orange);color:#fff}.secondary{background:var(--navy);color:#fff}
-.printzone{display:none}
-@media(max-width:980px){.rulesGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){
- .app{width:min(100% - 14px,620px);padding-top:8px}
- .hero{border-radius:22px;padding:16px}
- .rulesGrid{grid-template-columns:1fr;gap:10px}
- .rule{min-height:0}
- .grid{grid-template-columns:1fr}
- .card{padding:14px}
- .exercise{min-height:0}
- .actions{grid-template-columns:1fr}
- .fab{width:58px;height:58px}
-}
-@media(max-width:390px){
- .exercise b{font-size:.76rem}
- .tag{font-size:.62rem}
- .exGrid{gap:7px}
-}
-@media print{
- body{background:#fff}.app,.fab,.modal{display:none!important}
- .printzone{display:block!important}
- .printzone img{display:block;width:100%;height:auto}
- @page{margin:8mm}
-}
+:root{--o:#f36c21;--n:#102b50;--bg:#eef3f5;--line:#dbe3e9;--g:#2d7f4f;--b:#2870ad;--r:#c93434}*{box-sizing:border-box;min-width:0}html,body{margin:0;max-width:100%;overflow-x:hidden}body{font-family:Arial,sans-serif;color:var(--n);background:linear-gradient(#fbfcfd,var(--bg))}.app{width:min(1120px,calc(100% - 16px));margin:auto;padding:10px 0 100px}.brand{font-weight:900;padding:8px 4px 14px}.brand:before{content:"//";color:var(--o);margin-right:10px}.hero,.card,.selected,.hint{background:#fff;border:1px solid var(--line);border-radius:22px}.hero{padding:18px}.kicker{color:var(--o);font-size:.75rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}h1{font-size:clamp(2rem,7vw,4.5rem);line-height:.95;margin:7px 0 8px;letter-spacing:-.04em}.sub{margin:0;color:#536270}.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}.rule{border:1.5px solid var(--line);border-radius:18px;padding:15px;min-height:205px}.rule.g{border-color:#81b596;background:#f8fcf9}.rule.b{border-color:#86afd2;background:#f8fbfe}.rule.o{border-color:#efa36f;background:#fffaf6}.rule.r{border-color:#e18a8a;background:#fff9f9}.rh{display:flex;align-items:center;gap:9px;font-weight:900}.num{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:grid;place-items:center;color:#fff}.g .num{background:var(--g)}.b .num{background:var(--b)}.o .num{background:var(--o)}.r .num{background:var(--r)}.rule p,.rule li{font-size:.92rem;line-height:1.4;color:#2b3b4f}.rule ul{padding-left:18px;margin-bottom:0}.scale{display:grid;grid-template-columns:repeat(11,1fr);font-size:.65rem;text-align:center;margin:12px 0 8px}.bar{grid-column:1/-1;height:6px;border-radius:10px;background:linear-gradient(90deg,var(--g) 0 50%,#9ba3ab 50%);position:relative}.bar:after{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;background:var(--o);transform:translate(-50%,-50%);box-shadow:0 0 0 3px #fff}.section{margin-top:28px}.section h2{font-size:clamp(1.8rem,6vw,3rem);margin:3px 0 10px;letter-spacing:-.04em}.count{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#657586;font-weight:800;font-size:.85rem;margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{padding:13px;text-align:left;color:var(--n);cursor:pointer;transition:.18s;box-shadow:0 7px 22px rgba(16,43,80,.05)}.card.sel{background:var(--o);border-color:var(--o);color:#fff;transform:translateY(-6px);box-shadow:0 16px 34px rgba(243,108,33,.24)}.cardHead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.card h3{margin:0;font-size:1.05rem}.tag{border:1px solid currentColor;border-radius:999px;padding:5px 8px;font-size:.65rem;font-weight:900}.exgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.exercise{background:#f7f9fb;border:1px solid #e5eaee;border-radius:14px;padding:7px;color:var(--n);text-align:center;overflow:hidden}.sel .exercise{background:#fff}.thumb{width:100%;aspect-ratio:4/3;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:contain;transform:scale(var(--s,1.1));transform-origin:center;display:block}.exercise b{display:block;font-size:.78rem;line-height:1.2;margin-top:7px}.selected,.hint{margin-top:14px;padding:14px}.selected h3{margin:0 0 8px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{background:#f3f6f8;border-radius:999px;padding:7px 10px;font-size:.78rem;font-weight:800;color:#34495f}.hint{font-size:.86rem;line-height:1.45;color:#536270}.fab{position:fixed;right:16px;bottom:16px;width:60px;height:60px;border:0;border-radius:50%;background:var(--o);color:#fff;font-size:1.6rem;box-shadow:0 14px 34px rgba(243,108,33,.35);z-index:10}.modal{position:fixed;inset:0;background:#0007;display:none;place-items:center;padding:18px;z-index:20}.modal.on{display:grid}.sheet{width:min(430px,100%);background:#fff;border-radius:22px;padding:22px}.sheet h3{margin-top:0}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions button{border:0;border-radius:13px;padding:13px;font-weight:900}.png{background:var(--o);color:#fff}.print{background:var(--n);color:#fff}.close{float:right;border:0;background:none;font-size:1.5rem}.printzone{display:none}@media(max-width:760px){.rules{grid-template-columns:1fr}.rule{min-height:0}.grid{grid-template-columns:1fr}}@media(max-width:390px){.card{padding:10px}.exercise b{font-size:.72rem}}@media print{.app,.fab,.modal{display:none!important}.printzone{display:block}.printzone img{width:100%;height:auto}@page{margin:8mm}}
 </style>
 </head>
 <body>
 <main class="app">
-  <div class="brand"><span class="brandMark"><i></i><i></i></span> WORKING MOTION</div>
-  <section class="hero">
-    <span class="kicker">Trainingsplan</span>
-    <h1>Trainingsregeln</h1>
-    <p class="heroSub">F√ºr Ihr Krafttraining zu Hause</p>
-    <div class="rulesGrid">
-      <article class="rule green">
-        <div class="ruleHead"><span class="num">1</span><h2>H§UFIGKEIT</h2></div>
-        <p><strong>2√ó pro Woche trainieren.</strong></p>
-        <p>Zwischen den Einheiten m√∂glichst Erholung einplanen.</p>
-      </article>
-      <article class="rule blue">
-        <div class="ruleHead"><span class="num">2</span><h2>UMFANG</h2></div>
-        <ul>
-          <li>Jede √úbung: <strong>3 S√§tze</strong></li>
-          <li><strong>6‚Äì12 Wiederholungen</strong> pro Satz</li>
-          <li>Wenn Sie 12 Wiederholungen schaffen: Gewicht erh√∂hen.</li>
-        </ul>
-      </article>
-      <article class="rule orange">
-        <div class="ruleHead"><span class="num">3</span><h2>SCHMERZREGEL</h2></div>
-        <div class="painScale">
-          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-          <div class="painLine"></div>
-        </div>
-        <p>W√§hrend des Trainings sind Schmerzen bis <strong>5/10</strong> erlaubt.</p>
-        <p>Am Abend und am n√§chsten Tag sollten die Schmerzen nicht st√§rker sein.</p>
-      </article>
-      <article class="rule red">
-        <div class="ruleHead"><span class="num">4</span><h2>WICHTIG</h2></div>
-        <p>Wenn die Schmerzen sp√§ter st√§rker sind, trainieren Sie beim n√§chsten Mal mit weniger SchmerzhÄâ zum Beispiel nur bis <strong>4/10 oder 3/10</strong>.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="sectionHead">
-      <div><span class="kicker">√úbungsauswahl</span><h2>√úbungen pro Muskelgruppe</h2></div>
-      <span id="count" class="count">0 Muskelgruppen ausgew√§hlt</span>
-    </div>
-    <div id="grid" class="grid"></div>
-    <div class="selectedPanel">
-      <h3>Ausgew√§hlte √úbungen</h3>
-      <div id="selectedList" class="selectedList"><span class="selChip">Noch nichts ausgew√§hlt.</span></div>
-    </div>
-    <div class="footerHint">Tippen Sie auf die passenden Muskelgruppen. √úber das Drucksymbol unten rechts k√∂nnen Sie anschlie√üend einen individuellen Trainingsplan als PNG speichern oder direkt drucken.</div>
-  </section>
+<div class="brand">WORKING MOTION</div>
+<section class="hero"><span class="kicker">Trainingsplan</span><h1>Trainingsregeln</h1><p class="sub">F&uuml;r Ihr Krafttraining zu Hause</p>
+<div class="rules">
+<article class="rule g"><div class="rh"><span class="num">1</span>H&Auml;UFIGKEIT</div><p><b>2&times; pro Woche trainieren.</b></p><p>Zwischen den Einheiten m&ouml;glichst Erholung einplanen.</p></article>
+<article class="rule b"><div class="rh"><span class="num">2</span>UMFANG</div><ul><li>Jede &Uuml;bung: <b>3 S&auml;tze</b></li><li><b>6&ndash;12 Wiederholungen</b> pro Satz</li><li>Wenn Sie 12 Wiederholungen schaffen: Gewicht erh&ouml;hen.</li></ul></article>
+<article class="rule o"><div class="rh"><span class="num">3</span>SCHMERZREGEL</div><div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><div class="bar"></div></div><p>W&auml;hrend des Trainings sind Schmerzen bis <b>5/10</b> erlaubt.</p><p>Am Abend und am n&auml;chsten Tag sollten die Schmerzen nicht st&auml;rker sein.</p></article>
+<article class="rule r"><div class="rh"><span class="num">4</span>WICHTIG</div><p>Wenn die Schmerzen sp&auml;ter st&auml;rker sind, trainieren Sie beim n&auml;chsten Mal mit weniger Schmerz &ndash; zum Beispiel nur bis <b>4/10 oder 3/10</b>.</p></article>
+</div></section>
+<section class="section"><span class="kicker">&Uuml;bungsauswahl</span><h2>&Uuml;bungen pro Muskelgruppe</h2><div id="count" class="count">0 Muskelgruppen ausgew&auml;hlt</div><div id="grid" class="grid"></div>
+<div class="selected"><h3>Ausgew&auml;hlte &Uuml;bungen</h3><div id="chips" class="chips"><span class="chip">Noch nichts ausgew&auml;hlt.</span></div></div>
+<div class="hint">Tippen Sie auf die passenden Muskelgruppen. &Uuml;ber das Drucksymbol unten rechts k&ouml;nnen Sie anschlie&szlig;end einen individuellen Trainingsplan als PNG speichern oder direkt drucken.</div></section>
 </main>
-
-<button id="fab" class="fab" aria-label="Trainingsplan ausgeben" title="Drucken oder PNG">
-  <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
-</button>
-
-<div id="modal" class="modal"><div class="sheet">
-  <button id="close" class="close" aria-label="Schlie√üen">√ó</button>
-  <h3>Trainingsplan ausgeben</h3>
-  <p>Die ausgew√§hlten Muskelgruppen werden als fertige Infografik zusammengestellt.</p>
-  <div class="actions"><button id="png" class="primary">PNG speichern</button><button id="print" class="secondary">Direkt drucken</button></div>
-</div></div>
-
-<section class="printzone"><img id="printPoster" alt="Pers√∂nlicher Trainingsplan"></section>
-
+<button id="fab" class="fab" aria-label="Trainingsplan ausgeben">&#128424;</button>
+<div id="modal" class="modal"><div class="sheet"><button id="close" class="close">&times;</button><h3>Trainingsplan ausgeben</h3><p>Die ausgew&auml;hlten Muskelgruppen werden in den Trainingsplan &uuml;bernommen.</p><div class="actions"><button id="png" class="png">PNG speichern</button><button id="print" class="print">Direkt drucken</button></div></div></div>
+<section class="printzone"><img id="printPoster" alt="Trainingsplan"></section>
 <script>
-const DATA=[
- {g:'Bizeps',c:'#255fa7',ex:[['Bizeps Curls','assets/biceps-curls.svg'],['Rudern','assets/rowing.svg']]},
- {g:'Trizeps',c:'#348341',ex:[['Trizeps-Maschine','assets/triceps-machine.svg'],['Bankdr√ºcken','assets/bench-press.svg']]},
- {g:'Brust',c:'#e59716',ex:[['Bankdr√ºcken','assets/bench-press.svg'],['Fliegende','assets/chest-fly.webp']]},
- {g:'Schultern',c:'#7357a2',ex:[['Schulterdr√ºcken','assets/shoulder-press.svg'],['Seitheben','assets/lateral-raise.svg']]},
- {g:'R√ºcken',c:'#218b9d',ex:[['Latzug','assets/lat-pulldown.svg'],['Kurzhantel-Rudern','assets/dumbbell-row.svg']]},
- {g:'Beine ¬∑ vordere Kette',c:'#d5503d',ex:[['Beinpresse','assets/leg-press.svg'],['Kniestrecker','assets/leg-extension.svg']]},
- {g:'Beine ¬∑ hintere Kette',c:'#be3a2d',ex:[['Deadlifts','assets/deadlift.svg'],['Kniebeuger','assets/leg-curl.svg']]},
- {g:'Bauch',c:'#2c6f9f',ex:[['Plank','assets/plank.svg'],['Beinheben','assets/leg-raise.svg']]}
+const A='assets/';
+const D=[
+['Bizeps',[['Bizeps Curls','biceps-curls.svg',1.12],['Rudern','rowing.svg',1.12]]],
+['Trizeps',[['Trizeps-Maschine','triceps-machine.svg',1.34],['Bankdr\u00fccken','bench-press.svg',1.10]]],
+['Brust',[['Bankdr\u00fccken','bench-press.svg',1.10],['Fliegende','chest-fly.webp',1.12]]],
+['Schultern',[['Schulterdr\u00fccken','shoulder-press.svg',1.12],['Seitheben','lateral-raise.svg',1.12]]],
+['R\u00fccken',[['Latzug','lat-pulldown.svg',1.14],['Kurzhantel-Rudern','dumbbell-row.svg',1.12]]],
+['Beine \u00b7 vordere Kette',[['Beinpresse','leg-press.svg',1.18],['Kniestrecker','leg-extension.svg',1.22]]],
+['Beine \u00b7 hintere Kette',[['Deadlifts','deadlift.svg',1.10],['Kniebeuger','leg-curl.svg',1.16]]],
+['Bauch',[['Plank','plank.svg',1.10],['Beinheben','leg-raise.svg',1.10]]]
 ];
-const selected=new Set();
-const grid=document.getElementById('grid'),count=document.getElementById('count'),selectedList=document.getElementById('selectedList');
-
-function render(){
-  grid.innerHTML='';
-  DATA.forEach((d,i)=>{
-    const b=document.createElement('button');
-    b.type='button';
-    b.className='card'+(selected.has(i)?' sel':'');
-    b.setAttribute('aria-pressed',selected.has(i));
-    b.innerHTML=`<div class="cardHead"><h3>${d.g}</h3><span class="tag">2 √úbungen</span></div><div class="exGrid">${
-      d.ex.map(([n,src])=>`<div class="exercise"><div class="thumb"><img src="${src}" alt="${n}" loading="eager"></div><b>${n}</b></div>`).join('')
-    }</div>`;
-    b.onclick=()=>{selected.has(i)?selected.delete(i):selected.add(i);render()};
-    grid.appendChild(b);
-  });
-  count.textContent=`${selected.size} Muskelgruppe$sselected.size===1?'éâ€âﬂH]\ŸŸ]È¬à€€ú›⁄\œVÀããúŸ[X›YKú€‹ù
-
-KäOOòKXäKõX\
-OOò‹[à€\‹œHúŸ[⁄\èâ—UV⁄WKôﬂNà	—UV⁄WKô^õX\
-OûÃJKöõ⁄[ä	»0≠»	 _O‹‹[èò
-N¬àŸ[X›Y\›ö[õô\íSX⁄\Àöõ⁄[ä	… _	œ‹[à€\‹œHúŸ[⁄\èìõÿ⁄öX⁄»]\ŸŸ]Èè‹‹[èâŒ¬üBúô[ô\ä
-N¬Çò€€ú›[Ÿ[Yÿ›[Y[ùôŸ][[Y[ùûRY
-	€[Ÿ[	 N¬ôÿ›[Y[ùôŸ][[Y[ùûRY
-	ŸòXâ Kõ€ò€X⁄œJ
-OOõ[Ÿ[ò€\‹”\›òY
-	€€â N¬ôÿ›[Y[ùôŸ][[Y[ùûRY
-	ÿ€‹ŸI Kõ€ò€X⁄œJ
-OOõ[Ÿ[ò€\‹”\›úô[[›ôJ	€€â N¬õ[Ÿ[õ€ò€X⁄œYOOû⁄YäKù\ôŸ]OO[[Ÿ[
-[[Ÿ[ò€\‹”\›úô[[›ôJ	€€â _N¬Çôù[ò›[€àúä›KÀãö[›õ⁄ŸKœLä^¬àèSX]õZ[äãÀÃãÃäNÿ›òôY⁄[î]
-
-Nÿ›úõ›[ôôX›
-KÀäN¬àYäö[
-^ÿ›ôö[›[OYö[ÿ›ôö[
-
-_HYä›õ⁄ŸJ^ÿ›ú›õ⁄ŸT›[O\›õ⁄ŸNÿ›õ[ôU⁄Y[Œÿ›ú›õ⁄ŸJ
-_BüBôù[ò›[€à‹ò\
-›^KX^⁄Y[ôRZY⁄X^[ô\œNNJ^¬à€€ú›€‹ôœT›ö[ô ^
-Kú‹]
-◊ À N€][ôOI…À[ô\œV◊N¬àõ‹ä€€ú›€‹ôŸà€‹ô ^ÿ€€ú›\›[[ôO€[ôJ…»	 ›€‹ôù€‹ô⁄Yä›õYX\›\ôU^
-\›
-Kù⁄YõX^⁄Y	âõ[ôJ^€[ô\Àú\⁄
-[ôJN€[ôO]€‹ôY[ŸH[ôO]\›BàYä[ôJ[[ô\Àú\⁄
-[ôJN¬àYä[ô\Àõ[ô›õX^[ô\ ^€[ô\œ[[ô\Àú€XŸJX^[ô\ N€]\›[[ô\÷€X^[ô\ÀLWN›⁄[J›õYX\›\ôU^
-\›
-…¯†)â Kù⁄YõX^⁄Y	âõ\›õ[ô›åJ[\›[\›ú€XŸJLJN€[ô\÷€X^[ô\ÀLWO[\›
-…»8†)âﬂBà[ô\Àôõ‹ëXX⁄
-
-JOOò›ôö[^
-J⁄Jõ[ôRZY⁄
-JN‹ô]\õà[ô\Àõ[ô›
-õ[ôRZY⁄¬üBôù[ò›[€àÿY[XYŸJ‹ò ^‹ô]\õàô]»õ€Z\ŸJ
-ô\€€ôKôZôX›
-OOûÿ€€ú›[Yœ[ô]»[XYŸJ
-N⁄[YÀõ€õÿYJ
-OOúô\€€ôJ[Y N⁄[YÀõ€ô\úõ‹è\ôZôX›⁄[YÀú‹òœ\‹òﬂJ_Bôù[ò›[€àö][XYŸJ›[YÀKÀ
-^ÿ€€ú›œSX]õZ[äÀ⁄[YÀù⁄Y⁄[YÀöZY⁄
-Nÿ€€ú›œZ[YÀù⁄Y
-úÀZ[YÀöZY⁄
-úŒÿ›ôò]“[XYŸJ[YÀ
- ÀY KÃãJ Y
-KÃãÀ
-_Bôù[ò›[€à⁄\ò€Sù[Xô\ä›ãK€€‹ä^ÿ›ôö[›[OX€€‹éÿ›òôY⁄[î]
-
-Nÿ›ò\ò KåãX]îJåäNÿ›ôö[
-
-Nÿ›ôö[›[OI»ŸôôâŒÿ›ôõ€ùIŒLçú\öX[	Œÿ›ù^[Y€èIÿŸ[ù\âŒÿ›ù^ò\Ÿ[[ôOI€ZYIŒÿ›ôö[^
-ãJÃJNÿ›ôö[^[Y€èI€Yù	Œÿ›ù^ò\Ÿ[[ôOIÿ[Xô]X…ﬂBÇ
+const sel=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips');
+function render(){grid.innerHTML='';D.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.className='card'+(sel.has(i)?' sel':'');b.innerHTML='<div class="cardHead"><h3>'+d[0]+'</h3><span class="tag">2 \u00dcbungen</span></div><div class="exgrid">'+d[1].map(e=>'<div class="exercise"><div class="thumb"><img src="'+A+e[1]+'" alt="'+e[0]+'" style="--s:'+e[2]+'"></div><b>'+e[0]+'</b></div>').join('')+'</div>';b.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);render()};grid.appendChild(b)});count.textContent=sel.size+' Muskelgruppe'+(sel.size===1?'':'n')+' ausgew\u00e4hlt';const c=[...sel].sort((a,b)=>a-b).map(i=>'<span class="chip">'+D[i][0]+': '+D[i][1].map(e=>e[0]).join(' \u00b7 ')+'</span>');chips.innerHTML=c.join('')||'<span class="chip">Noch nichts ausgew\u00e4hlt.</span>'}render();
+const modal=document.getElementById('modal');document.getElementById('fab').onclick=()=>modal.classList.add('on');document.getElementById('close').onclick=()=>modal.classList.remove('on');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on')};
+function load(src){return new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=src})}
+function wrap(ctx,t,x,y,w,lh){let line='';for(const word of t.split(' ')){const q=line?line+' '+word:word;if(ctx.measureText(q).width>w&&line){ctx.fillText(line,x,y);y+=lh;line=word}else line=q}if(line)ctx.fillText(line,x,y);return y+lh}
+async function poster(){const ids=[...sel].sort((a,b)=>a-b),W=1200,row=190,H=430+Math.max(1,ids.length)*row+190,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,W,H);x.fillStyle='#102b50';x.font='900 48px Arial';x.fillText('TRAININGSREGELN',55,70);x.font='24px Arial';x.fillText('2x pro Woche | 3 Saetze | 6-12 Wdh | bei 12 Wdh Gewicht erhoehen',55,112);x.fillStyle='#f36c21';x.font='900 26px Arial';x.fillText('SCHMERZREGEL: waehrend des Trainings bis 5/10',55,160);x.fillStyle='#33475b';x.font='22px Arial';wrap(x,'Abends und am naechsten Tag nicht staerker. Sonst beim naechsten Mal mit weniger Schmerz trainieren.',55,200,W-110,30);x.fillStyle='#102b50';x.font='900 30px Arial';x.fillText('AUSGEWAEHLTE UEBUNGEN',55,275);let y=310;if(!ids.length){x.font='24px Arial';x.fillText('Keine Muskelgruppe ausgewaehlt.',55,y+70)}for(const id of ids){const d=D[id];x.strokeStyle='#dbe3e9';x.strokeRect(55,y,W-110,row-12);x.fillStyle='#102b50';x.font='900 25px Arial';x.fillText(d[0],75,y+35);for(let j=0;j<2;j++){const e=d[1][j],img=await load(A+e[1]),bx=75+j*535,bw=500,bh=120,s=Math.min(bw/img.width,bh/img.height),dw=img.width*s,dh=img.height*s;x.drawImage(img,bx+(bw-dw)/2,y+48+(bh-dh)/2,dw,dh);x.font='900 20px Arial';x.fillText(e[0],bx,y+176)}y+=row}x.fillStyle='#102b50';x.font='900 20px Arial';x.fillText('WORKING MOTION',55,H-55);return c}
+document.getElementById('png').onclick=async()=>{const c=await poster(),a=document.createElement('a');a.download='trainingsplan-working-motion.png';a.href=c.toDataURL('image/png');a.click();modal.classList.remove('on')};document.getElementById('print').onclick=async()=>{const c=await poster();document.getElementById('printPoster').src=c.toDataURL('image/png');modal.classList.remove('on');setTimeout(()=>window.print(),100)};
+</script>
+</body>
+</html>
