@@ -6,46 +6,241 @@
 <title>Trainingsregeln Â· Working Motion</title>
 <meta name="description" content="Trainingsregeln und persÃ¶nliche Ãœbungsauswahl fÃ¼r Patient:innen.">
 <style>
-:root{--orange:#f36c21;--orange-soft:#fff1e8;--navy:#102b50;--bg:#f4f7f8;--card:#fff;--line:#dbe3e9;--mut:#647383;--green:#2d7f4f;--blue:#2870ad;--red:#c93434;--shadow:0 14px 34px rgba(16,43,80,.09);--r:24px;--max:1180px}
-*{box-sizing:border-box;min-width:0}html,body{max-width:100%;overflow-x:hidden}body{margin:0;background:linear-gradient(180deg,#fbfcfd 0,#eef3f5 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--navy)}button{font:inherit}.app{width:min(var(--max),calc(100% - 24px));margin:auto;padding:18px 0 110px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.02em;margin:2px 4px 14px}.brandMark{display:inline-flex;gap:4px}.brandMark i{display:block;width:13px;height:8px;background:var(--orange);transform:skewX(-32deg);border-radius:2px}.hero{background:#fff;border:1px solid var(--line);border-radius:30px;padding:clamp(18px,3vw,34px);box-shadow:var(--shadow)}.kicker{font-size:.78rem;font-weight:900;letter-spacing:.13em;color:var(--orange);text-transform:uppercase}h1{font-size:clamp(2.35rem,7vw,5rem);line-height:.95;letter-spacing:-.055em;margin:.35rem 0 .55rem;overflow-wrap:anywhere}.heroSub{margin:0;color:#41536a;font-size:clamp(1rem,2vw,1.25rem)}.rulesGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}.rule{border:1.5px solid var(--line);border-radius:20px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:12px;min-height:230px;overflow:hidden}.rule.green{border-color:#81b596;background:#f8fcf9}.rule.blue{border-color:#86afd2;background:#f8fbfe}.rule.orange{border-color:#efa36f;background:#fffaf6}.rule.red{border-color:#e18a8a;background:#fff9f9}.ruleHead{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;flex:0 0 auto}.green .num{background:var(--green)}.blue .num{background:var(--blue)}.orange .num{background:var(--orange)}.red .num{background:var(--red)}.rule h2{font-size:1rem;margin:0;letter-spacing:.02em}.green h2{color:var(--green)}.blue h2{color:var(--blue)}.orange h2{color:var(--orange)}.red h2{color:var(--red)}.rule p,.rule li{margin:0;color:#27394e;font-size:.94rem;line-height:1.42;overflow-wrap:anywhere;hyphens:auto}.rule ul{margin:0;padding-left:1.1rem;display:grid;gap:7px}.painScale{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;align-items:end}.painScale span{font-size:.68rem;text-align:center;color:#4e5b68}.painLine{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--green) 0 50%,#9ba3ab 50% 100%);grid-column:1/-1;position:relative}.painLine:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 3px #fff}.section{margin-top:30px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 2px 14px}.sectionHead h2{font-size:clamp(1.8rem,4vw,3rem);margin:.2rem 0 0;letter-spacing:-.04em}.count{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--mut);font-size:.88rem;font-weight:900;white-space:normal;text-align:center}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);background:#fff;border-radius:24px;padding:16px;box-shadow:0 8px 24px rgba(16,43,80,.05);transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease;color:var(--navy);cursor:pointer;text-align:left;overflow:hidden}.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(16,43,80,.09)}.card.sel{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-7px);box-shadow:0 18px 38px rgba(243,108,33,.26)}.cardHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.card h3{font-size:1.15rem;line-height:1.15;margin:0;overflow-wrap:anywhere}.tag{border:1px solid currentColor;border-radius:999px;padding:6px 9px;font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;opacity:.72;overflow-wrap:anywhere}.exGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.exercise{background:#f7f9fb;border:1px solid #e5eaee;border-radius:16px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:7px;min-height:170px;overflow:hidden}.sel .exercise{background:#fff;color:var(--navy);border-color:rgba(255,255,255,.75)}.exercise img{width:100%;height:120px;object-fit:contain;display:block;border-radius:10px;background:#fff}.exercise b{font-size:.82rem;line-height:1.2;text-align:center;overflow-wrap:anywhere;hyphens:auto}.selectedPanel{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 8px 24px rgba(16,43,80,.05)}.selectedPanel h3{margin:0 0 8px;font-size:1.05rem}.selectedList{display:flex;flex-wrap:wrap;gap:8px}.selChip{background:#f3f6f8;border-radius:999px;padding:8px 11px;color:#34495f;font-size:.8rem;font-weight:800;overflow-wrap:anywhere}.footerHint{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px 16px;color:#526172;font-size:.88rem;line-height:1.45}.fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:64px;height:64px;border-radius:50%;border:0;background:var(--orange);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 15px 38px rgba(243,108,33,.38);z-index:40}.fab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.modal{position:fixed;inset:0;background:rgba(10,24,40,.48);backdrop-filter:blur(4px);display:none;place-items:center;padding:18px;z-index:60}.modal.on{display:grid}.sheet{position:relative;width:min(470px,100%);background:#fff;border-radius:25px;padding:25px;box-shadow:0 28px 70px rgba(0,0,0,.24)}.sheet h3{margin:0 0 7px;font-size:1.45rem}.sheet p{margin:0;color:var(--mut);line-height:1.45}.close{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:2rem;color:#84909b;cursor:pointer}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.actions button{border:0;border-radius:14px;padding:13px;font-weight:900;cursor:pointer}.primary{background:var(--orange);color:#fff}.secondary{background:var(--navy);color:#fff}.printzone{display:none}@media(max-width:980px){.rulesGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.app{width:min(100% - 14px,620px);padding-top:8px}.hero{border-radius:22px;padding:16px}.rulesGrid{grid-template-columns:1fr;gap:10px}.rule{min-height:0}.grid{grid-template-columns:1fr}.card{padding:14px}.exercise{min-height:158px}.exercise img{height:108px}.actions{grid-template-columns:1fr}.fab{width:58px;height:58px}}@media(max-width:390px){.exercise b{font-size:.76rem}.tag{font-size:.62rem}.exGrid{gap:7px}}@media print{body{background:#fff}.app,.fab,.modal{display:none!important}.printzone{display:block!important}.printzone img{display:block;width:100%;height:auto}@page{margin:8mm}}
+:root{
+  --orange:#f36c21;--orange-soft:#fff1e8;--navy:#102b50;--bg:#f4f7f8;--card:#fff;
+  --line:#dbe3e9;--mut:#647383;--green:#2d7f4f;--blue:#2870ad;--red:#c93434;
+  --shadow:0 14px 34px rgba(16,43,80,.09);--r:24px;--max:1180px
+}
+*{box-sizing:border-box;min-width:0}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:linear-gradient(180deg,#fbfcfd 0,#eef3f5 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--navy)}
+button{font:inherit}
+.app{width:min(var(--max),calc(100% - 24px));margin:auto;padding:18px 0 110px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.02em;margin:2px 4px 14px}
+.brandMark{display:inline-flex;gap:4px}
+.brandMark i{display:block;width:13px;height:8px;background:var(--orange);transform:skewX(-32deg);border-radius:2px}
+.hero{background:#fff;border:1px solid var(--line);border-radius:30px;padding:clamp(18px,3vw,34px);box-shadow:var(--shadow)}
+.kicker{font-size:.78rem;font-weight:900;letter-spacing:.13em;color:var(--orange);text-transform:uppercase}
+h1{font-size:clamp(2.35rem,7vw,5rem);line-height:.95;letter-spacing:-.055em;margin:.35rem 0 .55rem;overflow-wrap:anywhere}
+.heroSub{margin:0;color:#41536a;font-size:clamp(1rem,2vw,1.25rem)}
+.rulesGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
+.rule{border:1.5px solid var(--line);border-radius:20px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:12px;min-height:230px;overflow:hidden}
+.rule.green{border-color:#81b596;background:#f8fcf9}.rule.blue{border-color:#86afd2;background:#f8fbfe}.rule.orange{border-color:#efa36f;background:#fffaf6}.rule.red{border-color:#e18a8a;background:#fff9f9}
+.ruleHead{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;flex:0 0 auto}
+.green .num{background:var(--green)}.blue .num{background:var(--blue)}.orange .num{background:var(--orange)}.red .num{background:var(--red)}
+.rule h2{font-size:1rem;margin:0;letter-spacing:.02em}
+.green h2{color:var(--green)}.blue h2{color:var(--blue)}.orange h2{color:var(--orange)}.red h2{color:var(--red)}
+.rule p,.rule li{margin:0;color:#27394e;font-size:.94rem;line-height:1.42;overflow-wrap:anywhere;hyphens:auto}
+.rule ul{margin:0;padding-left:1.1rem;display:grid;gap:7px}
+.painScale{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;align-items:end}
+.painScale span{font-size:.68rem;text-align:center;color:#4e5b68}
+.painLine{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--green) 0 50%,#9ba3ab 50% 100%);grid-column:1/-1;position:relative}
+.painLine:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 3px #fff}
+.section{margin-top:30px}
+.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 2px 14px}
+.sectionHead h2{font-size:clamp(1.8rem,4vw,3rem);margin:.2rem 0 0;letter-spacing:-.04em}
+.count{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--mut);font-size:.88rem;font-weight:900;white-space:normal;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);background:#fff;border-radius:24px;padding:16px;box-shadow:0 8px 24px rgba(16,43,80,.05);transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease;color:var(--navy);cursor:pointer;text-align:left;overflow:hidden}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(16,43,80,.09)}
+.card.sel{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-7px);box-shadow:0 18px 38px rgba(243,108,33,.26)}
+.cardHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.card h3{font-size:1.15rem;line-height:1.15;margin:0;overflow-wrap:anywhere}
+.tag{border:1px solid currentColor;border-radius:999px;padding:6px 9px;font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;opacity:.72;overflow-wrap:anywhere}
+.exGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.exercise{background:#f7f9fb;border:1px solid #e5eaee;border-radius:16px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:9px;min-height:0;overflow:hidden}
+.sel .exercise{background:#fff;color:var(--navy);border-color:rgba(255,255,255,.75)}
+.thumb{width:100%;aspect-ratio:4/3;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden}
+.exercise img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;transform:scale(1.10);transform-origin:center}
+.exercise img[alt="Trizeps-Maschine"]{transform:scale(1.34)}
+.exercise img[alt="Kniestrecker"]{transform:scale(1.20)}
+.exercise img[alt="Beinpresse"]{transform:scale(1.16)}
+.exercise img[alt="Kniebeuger"]{transform:scale(1.14)}
+.exercise img[alt="Fliegende"]{transform:scale(1.08)}
+.exercise b{font-size:.82rem;line-height:1.2;text-align:center;overflow-wrap:anywhere;hyphens:auto}
+.selectedPanel{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 8px 24px rgba(16,43,80,.05)}
+.selectedPanel h3{margin:0 0 8px;font-size:1.05rem}
+.selectedList{display:flex;flex-wrap:wrap;gap:8px}
+.selChip{background:#f3f6f8;border-radius:999px;padding:8px 11px;color:#34495f;font-size:.8rem;font-weight:800;overflow-wrap:anywhere}
+.footerHint{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px 16px;color:#526172;font-size:.88rem;line-height:1.45}
+.fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:64px;height:64px;border-radius:50%;border:0;background:var(--orange);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 15px 38px rgba(243,108,33,.38);z-index:40}
+.fab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.modal{position:fixed;inset:0;background:rgba(10,24,40,.48);backdrop-filter:blur(4px);display:none;place-items:center;padding:18px;z-index:60}
+.modal.on{display:grid}
+.sheet{position:relative;width:min(470px,100%);background:#fff;border-radius:25px;padding:25px;box-shadow:0 28px 70px rgba(0,0,0,.24)}
+.sheet h3{margin:0 0 7px;font-size:1.45rem}
+.sheet p{margin:0;color:var(--mut);line-height:1.45}
+.close{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:2rem;color:#84909b;cursor:pointer}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.actions button{border:0;border-radius:14px;padding:13px;font-weight:900;cursor:pointer}
+.primary{background:var(--orange);color:#fff}.secondary{background:var(--navy);color:#fff}
+.printzone{display:none}
+@media(max-width:980px){.rulesGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){
+ .app{width:min(100% - 14px,620px);padding-top:8px}
+ .hero{border-radius:22px;padding:16px}
+ .rulesGrid{grid-template-columns:1fr;gap:10px}
+ .rule{min-height:0}
+ .grid{grid-template-columns:1fr}
+ .card{padding:14px}
+ .exercise{min-height:0}
+ .actions{grid-template-columns:1fr}
+ .fab{width:58px;height:58px}
+}
+@media(max-width:390px){
+ .exercise b{font-size:.76rem}
+ .tag{font-size:.62rem}
+ .exGrid{gap:7px}
+}
+@media print{
+ body{background:#fff}.app,.fab,.modal{display:none!important}
+ .printzone{display:block!important}
+ .printzone img{display:block;width:100%;height:auto}
+ @page{margin:8mm}
+}
 </style>
 </head>
 <body>
 <main class="app">
-<div class="brand"><span class="brandMark"><i></i><i></i></span> WORKING MOTION</div>
-<section class="hero"><span class="kicker">Trainingsplan</span><h1>Trainingsregeln</h1><p class="heroSub">FÃ¼r Ihr Krafttraining zu Hause</p><div class="rulesGrid">
-<article class="rule green"><div class="ruleHead"><span class="num">1</span><h2>HÃ„UFIGKEIT</h2></div><p><strong>2Ã— pro Woche trainieren.</strong></p><p>Zwischen den Einheiten mÃ¶glichst Erholung einplanen.</p></article>
-<article class="rule blue"><div class="ruleHead"><span class="num">2</span><h2>UMFANG</h2></div><ul><li>Jede Ãœbung: <strong>3 SÃ¤tze</strong></li><li><strong>6â€“12 Wiederholungen</strong> pro Satz</li><li>Wenn Sie 12 Wiederholungen schaffen: Gewicht erhÃ¶hen.</li></ul></article>
-<article class="rule orange"><div class="ruleHead"><span class="num">3</span><h2>SCHMERZREGEL</h2></div><div class="painScale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><div class="painLine"></div></div><p>WÃ¤hrend des Trainings sind Schmerzen bis <strong>5/10</strong> erlaubt.</p><p>Am Abend und am nÃ¤chsten Tag sollten die Schmerzen nicht stÃ¤rker sein.</p></article>
-<article class="rule red"><div class="ruleHead"><span class="num">4</span><h2>WICHTIG</h2></div><p>Wenn die Schmerzen spÃ¤ter stÃ¤rker sind, trainieren Sie beim nÃ¤chsten Mal mit weniger Schmerz â€“ zum Beispiel nur bis <strong>4/10 oder 3/10</strong>.</p></article>
-</div></section>
-<section class="section"><div class="sectionHead"><div><span class="kicker">Ãœbungsauswahl</span><h2>Ãœbungen pro Muskelgruppe</h2></div><span id="count" class="count">0 Muskelgruppen ausgewÃ¤hlt</span></div><div id="grid" class="grid"></div><div class="selectedPanel"><h3>AusgewÃ¤hlte Ãœbungen</h3><div id="selectedList" class="selectedList"><span class="selChip">Noch nichts ausgewÃ¤hlt.</span></div></div><div class="footerHint">Tippen Sie auf die passenden Muskelgruppen. Ãœber das Drucksymbol unten rechts kÃ¶nnen Sie anschlieÃŸend einen individuellen Trainingsplan als PNG speichern oder direkt drucken.</div></section>
+  <div class="brand"><span class="brandMark"><i></i><i></i></span> WORKING MOTION</div>
+  <section class="hero">
+    <span class="kicker">Trainingsplan</span>
+    <h1>Trainingsregeln</h1>
+    <p class="heroSub">FÃ¼r Ihr Krafttraining zu Hause</p>
+    <div class="rulesGrid">
+      <article class="rule green">
+        <div class="ruleHead"><span class="num">1</span><h2>H¤UFIGKEIT</h2></div>
+        <p><strong>2Ã— pro Woche trainieren.</strong></p>
+        <p>Zwischen den Einheiten mÃ¶glichst Erholung einplanen.</p>
+      </article>
+      <article class="rule blue">
+        <div class="ruleHead"><span class="num">2</span><h2>UMFANG</h2></div>
+        <ul>
+          <li>Jede Ãœbung: <strong>3 SÃ¤tze</strong></li>
+          <li><strong>6â€“12 Wiederholungen</strong> pro Satz</li>
+          <li>Wenn Sie 12 Wiederholungen schaffen: Gewicht erhÃ¶hen.</li>
+        </ul>
+      </article>
+      <article class="rule orange">
+        <div class="ruleHead"><span class="num">3</span><h2>SCHMERZREGEL</h2></div>
+        <div class="painScale">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+          <div class="painLine"></div>
+        </div>
+        <p>WÃ¤hrend des Trainings sind Schmerzen bis <strong>5/10</strong> erlaubt.</p>
+        <p>Am Abend und am nÃ¤chsten Tag sollten die Schmerzen nicht stÃ¤rker sein.</p>
+      </article>
+      <article class="rule red">
+        <div class="ruleHead"><span class="num">4</span><h2>WICHTIG</h2></div>
+        <p>Wenn die Schmerzen spÃ¤ter stÃ¤rker sind, trainieren Sie beim nÃ¤chsten Mal mit weniger Schmerzh€‰ zum Beispiel nur bis <strong>4/10 oder 3/10</strong>.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sectionHead">
+      <div><span class="kicker">Ãœbungsauswahl</span><h2>Ãœbungen pro Muskelgruppe</h2></div>
+      <span id="count" class="count">0 Muskelgruppen ausgewÃ¤hlt</span>
+    </div>
+    <div id="grid" class="grid"></div>
+    <div class="selectedPanel">
+      <h3>AusgewÃ¤hlte Ãœbungen</h3>
+      <div id="selectedList" class="selectedList"><span class="selChip">Noch nichts ausgewÃ¤hlt.</span></div>
+    </div>
+    <div class="footerHint">Tippen Sie auf die passenden Muskelgruppen. Ãœber das Drucksymbol unten rechts kÃ¶nnen Sie anschlieÃŸend einen individuellen Trainingsplan als PNG speichern oder direkt drucken.</div>
+  </section>
 </main>
-<button id="fab" class="fab" aria-label="Trainingsplan ausgeben" title="Drucken oder PNG"><svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg></button>
-<div id="modal" class="modal"><div class="sheet"><button id="close" class="close" aria-label="SchlieÃŸen">Ã—</button><h3>Trainingsplan ausgeben</h3><p>Die ausgewÃ¤hlten Muskelgruppen werden als fertige Infografik zusammengestellt.</p><div class="actions"><button id="png" class="primary">PNG speichern</button><button id="print" class="secondary">Direkt drucken</button></div></div></div>
+
+<button id="fab" class="fab" aria-label="Trainingsplan ausgeben" title="Drucken oder PNG">
+  <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+</button>
+
+<div id="modal" class="modal"><div class="sheet">
+  <button id="close" class="close" aria-label="SchlieÃŸen">Ã—</button>
+  <h3>Trainingsplan ausgeben</h3>
+  <p>Die ausgewÃ¤hlten Muskelgruppen werden als fertige Infografik zusammengestellt.</p>
+  <div class="actions"><button id="png" class="primary">PNG speichern</button><button id="print" class="secondary">Direkt drucken</button></div>
+</div></div>
+
 <section class="printzone"><img id="printPoster" alt="PersÃ¶nlicher Trainingsplan"></section>
+
 <script>
 const DATA=[
-{g:'Bizeps',c:'#255fa7',ex:[['Bizeps Curls','assets/biceps-curls.svg'],['Rudern','assets/rowing.svg']]},
-{g:'Trizeps',c:'#348341',ex:[['Trizeps-Maschine','assets/triceps-machine.svg'],['BankdrÃ¼cken','assets/bench-press.svg']]},
-{g:'Brust',c:'#e59716',ex:[['BankdrÃ¼cken','assets/bench-press.svg'],['Fliegende','assets/chest-fly.svg']]},
-{g:'Schultern',c:'#7357a2',ex:[['SchulterdrÃ¼cken','assets/shoulder-press.svg'],['Seitheben','assets/lateral-raise.svg']]},
-{g:'RÃ¼cken',c:'#218b9d',ex:[['Latzug','assets/lat-pulldown.svg'],['Kurzhantel-Rudern','assets/dumbbell-row.svg']]},
-{g:'Beine Â· vordere Kette',c:'#d5503d',ex:[['Beinpresse','assets/leg-press.svg'],['Kniestrecker','assets/leg-extension.svg']]},
-{g:'Beine Â· hintere Kette',c:'#be3a2d',ex:[['Deadlifts','assets/deadlift.svg'],['Kniebeuger','assets/leg-curl.svg']]},
-{g:'Bauch',c:'#2c6f9f',ex:[['Plank','assets/plank.svg'],['Beinheben','assets/leg-raise.svg']]}
+ {g:'Bizeps',c:'#255fa7',ex:[['Bizeps Curls','assets/biceps-curls.svg'],['Rudern','assets/rowing.svg']]},
+ {g:'Trizeps',c:'#348341',ex:[['Trizeps-Maschine','assets/triceps-machine.svg'],['BankdrÃ¼cken','assets/bench-press.svg']]},
+ {g:'Brust',c:'#e59716',ex:[['BankdrÃ¼cken','assets/bench-press.svg'],['Fliegende','assets/chest-fly.webp']]},
+ {g:'Schultern',c:'#7357a2',ex:[['SchulterdrÃ¼cken','assets/shoulder-press.svg'],['Seitheben','assets/lateral-raise.svg']]},
+ {g:'RÃ¼cken',c:'#218b9d',ex:[['Latzug','assets/lat-pulldown.svg'],['Kurzhantel-Rudern','assets/dumbbell-row.svg']]},
+ {g:'Beine Â· vordere Kette',c:'#d5503d',ex:[['Beinpresse','assets/leg-press.svg'],['Kniestrecker','assets/leg-extension.svg']]},
+ {g:'Beine Â· hintere Kette',c:'#be3a2d',ex:[['Deadlifts','assets/deadlift.svg'],['Kniebeuger','assets/leg-curl.svg']]},
+ {g:'Bauch',c:'#2c6f9f',ex:[['Plank','assets/plank.svg'],['Beinheben','assets/leg-raise.svg']]}
 ];
-const selected=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),selectedList=document.getElementById('selectedList');
-function render(){grid.innerHTML='';DATA.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.className='card'+(selected.has(i)?' sel':'');b.setAttribute('aria-pressed',selected.has(i));b.innerHTML=`<div class="cardHead"><h3>${d.g}</h3><span class="tag">2 Ãœbungen</span></div><div class="exGrid">${d.ex.map(([n,src])=>`<div class="exercise"><img src="${src}" alt="${n}" loading="eager"><b>${n}</b></div>`).join('')}</div>`;b.onclick=()=>{selected.has(i)?selected.delete(i):selected.add(i);render()};grid.appendChild(b)});count.textContent=`${selected.size} Muskelgruppe${selected.size===1?'':'n'} ausgewÃ¤hlt`;const chips=[...selected].sort((a,b)=>a-b).map(i=>`<span class="selChip">${DATA[i].g}: ${DATA[i].ex.map(x=>x[0]).join(' Â· ')}</span>`);selectedList.innerHTML=chips.join('')||'<span class="selChip">Noch nichts ausgewÃ¤hlt.</span>'}render();
-const modal=document.getElementById('modal');document.getElementById('fab').onclick=()=>modal.classList.add('on');document.getElementById('close').onclick=()=>modal.classList.remove('on');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on')};
-function rr(ctx,x,y,w,h,r,fill,stroke,lw=2){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke()}}
-function wrap(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){const words=String(text).split(/\s+/);let line='',lines=[];for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);if(lines.length>maxLines){lines=lines.slice(0,maxLines);let last=lines[maxLines-1];while(ctx.measureText(last+'â€¦').width>maxWidth&&last.length>1)last=last.slice(0,-1);lines[maxLines-1]=last+'â€¦'}lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return lines.length*lineHeight}
-function loadImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src})}
-function fitImage(ctx,img,x,y,w,h){const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,s=Math.min(w/iw,h/ih),dw=iw*s,dh=ih*s;ctx.drawImage(img,x+(w-dw)/2,y+(h-dh)/2,dw,dh)}
-function circleNumber(ctx,n,x,y,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 26px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);ctx.textAlign='left';ctx.textBaseline='alphabetic'}
-async function buildPoster(){const items=[...selected].sort((a,b)=>a-b),W=1400,margin=48,ruleH=210,ruleGap=16,top=190,rowH=210,rowGap=14,bottomH=260,rows=Math.max(items.length,1),H=top+ruleH+54+rows*(rowH+rowGap)+bottomH+80,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.fillStyle='#f8fafb';x.fillRect(0,0,W,H);rr(x,20,20,W-40,H-40,24,'#fff','#102b50',4);x.fillStyle='#102b50';x.font='900 60px Arial';x.fillText('DEIN TRAININGSPLAN AUF EINEN BLICK',margin,92);x.fillStyle='#f36c21';x.font='900 21px Arial';x.fillText('WORKING MOTION Â· TRAININGSREGELN',margin,132);const ruleW=(W-2*margin-3*ruleGap)/4,rules=[['1','HÃ„UFIGKEIT','#2d7f4f',['2Ã— pro Woche','trainieren']],['2','SÃ„TZE & WDH','#2870ad',['3 SÃ¤tze','6â€“12 Wiederholungen','12 Wdh geschafft?','Gewicht erhÃ¶hen.']],['3','SCHMERZREGEL','#f36c21',['WÃ¤hrend des Trainings','bis 5/10 erlaubt.']],['4','REAKTION DANACH','#c93434',['Abends & nÃ¤chster Tag','nicht stÃ¤rker.','Sonst nÃ¤chstes Mal','weniger Schmerz.']]];rules.forEach((r,i)=>{const rx=margin+i*(ruleW+ruleGap);rr(x,rx,top,ruleW,ruleH,18,'#fff',r[2],2);circleNumber(x,r[0],rx+34,top+36,r[2]);x.fillStyle=r[2];x.font='900 24px Arial';x.fillText(r[1],rx+70,top+43);x.fillStyle='#26384d';x.font='700 22px Arial';let yy=top+88;r[3].forEach(line=>{wrap(x,line,rx+22,yy,ruleW-44,28,2);yy+=32})});let y=top+ruleH+54;x.fillStyle='#102b50';x.font='900 31px Arial';x.fillText('ÃœBUNGEN PRO MUSKELGRUPPE',margin,y-16);if(!items.length){rr(x,margin,y,W-2*margin,rowH,18,'#f5f7f8','#dce3e8',2);x.fillStyle='#6c7783';x.font='700 28px Arial';x.fillText('Keine Muskelgruppe ausgewÃ¤hlt.',margin+28,y+84);x.font='22px Arial';x.fillText('WÃ¤hlen Sie auf der Webseite mindestens eine Muskelgruppe aus.',margin+28,y+128);y+=rowH+rowGap}else{for(const idx of items){const d=DATA[idx],leftW=245,exW=(W-2*margin-leftW-20)/2;rr(x,margin,y,W-2*margin,rowH,18,'#fff',d.c,2);rr(x,margin,y,leftW,rowH,18,d.c,null);x.fillStyle='#fff';x.font='900 27px Arial';wrap(x,d.g.toUpperCase(),margin+22,y+78,leftW-44,32,3);const imgs=await Promise.all(d.ex.map(e=>loadImage(e[1])));d.ex.forEach((e,j)=>{const exX=margin+leftW+10+j*exW;if(j===1){x.strokeStyle='#dce3e8';x.lineWidth=2;x.beginPath();x.moveTo(exX,y+16);x.lineTo(exX,y+rowH-16);x.stroke()}fitImage(x,imgs[j],exX+10,y+10,180,rowH-20);x.fillStyle='#102b50';x.font='900 24px Arial';wrap(x,e[0],exX+205,y+74,exW-225,29,3);x.fillStyle='#4d5b69';x.font='20px Arial';x.fillText('3 SÃ¤tze',exX+205,y+130);x.fillText('6â€“12 Wdh',exX+205,y+158)});y+=rowH+rowGap}}const boxY=y+16,half=(W-2*margin-16)/2;x.fillStyle='#102b50';x.font='900 27px Arial';x.fillText('SCHMERZGUIDELINE â€“ WICHTIG!',margin,boxY-14);rr(x,margin,boxY,half,155,18,'#f7fcf8','#2d7f4f',2);x.fillStyle='#2d7f4f';x.font='900 25px Arial';x.fillText('ALLES GUT?',margin+24,boxY+42);x.fillStyle='#243649';x.font='21px Arial';wrap(x,'Abends und am nÃ¤chsten Tag keine stÃ¤rkeren Schmerzen? Dann wie geplant weitertrainieren.',margin+24,boxY+80,half-48,27,3);rr(x,margin+half+16,boxY,half,155,18,'#fff8f8','#c93434',2);x.fillStyle='#c93434';x.font='900 25px Arial';x.fillText('MEHR SCHMERZEN?',margin+half+40,boxY+42);x.fillStyle='#243649';x.font='21px Arial';wrap(x,'Dann beim nÃ¤chsten Mal mit weniger Schmerz trainieren, z. B. nur bis 3â€“4/10.',margin+half+40,boxY+80,half-48,27,3);rr(x,margin,boxY+173,W-2*margin,62,18,'#102b50',null);x.fillStyle='#fff';x.font='900 22px Arial';x.fillText('WICHTIG: Schmerz bis 5/10 wÃ¤hrend des Trainings ist okay â€“ danach sollte es nicht mehr werden.',margin+24,boxY+212);return c}
-document.getElementById('png').onclick=async()=>{const c=await buildPoster(),a=document.createElement('a');a.download='trainingsplan-working-motion.png';a.href=c.toDataURL('image/png');a.click();modal.classList.remove('on')};
-document.getElementById('print').onclick=async()=>{const c=await buildPoster();document.getElementById('printPoster').src=c.toDataURL('image/png');modal.classList.remove('on');setTimeout(()=>window.print(),120)};
-</script>
-</body>
-</html>
+const selected=new Set();
+const grid=document.getElementById('grid'),count=document.getElementById('count'),selectedList=document.getElementById('selectedList');
+
+function render(){
+  grid.innerHTML='';
+  DATA.forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='card'+(selected.has(i)?' sel':'');
+    b.setAttribute('aria-pressed',selected.has(i));
+    b.innerHTML=`<div class="cardHead"><h3>${d.g}</h3><span class="tag">2 Ãœbungen</span></div><div class="exGrid">${
+      d.ex.map(([n,src])=>`<div class="exercise"><div class="thumb"><img src="${src}" alt="${n}" loading="eager"></div><b>${n}</b></div>`).join('')
+    }</div>`;
+    b.onclick=()=>{selected.has(i)?selected.delete(i):selected.add(i);render()};
+    grid.appendChild(b);
+  });
+  count.textContent=`${selected.size} Muskelgruppe$sselected.size===1?'‰Û‰ßH]\ÙÙ]ğéÂˆÛÛœİÚ\ÏVË‹‹œÙ[XİYKœÛÜ
+
+KŠOO˜KXŠK›X\
+OO˜Ü[ˆÛ\ÜÏHœÙ[Ú\‰ÑUVÚWK™ßNˆ	ÑUVÚWK™^›X\
+OÌJKš›Ú[Š	È0­È	Ê_OÜÜ[˜
+NÂˆÙ[XİY\İš[›™\’SXÚ\Ëš›Ú[Š	ÉÊ_	ÏÜ[ˆÛ\ÜÏHœÙ[Ú\“›ØÚšXÚÈ]\ÙÙ]ğéÜÜ[‰ÎÂŸBœ™[™\Š
+NÂ‚˜ÛÛœİ[Ù[YØİ[Y[™Ù][[Y[RY
+	Û[Ù[	ÊNÂ™Øİ[Y[™Ù][[Y[RY
+	Ù˜X‰ÊK›Û˜ÛXÚÏJ
+OO›[Ù[˜Û\ÜÓ\İ˜Y
+	ÛÛ‰ÊNÂ™Øİ[Y[™Ù][[Y[RY
+	ØÛÜÙIÊK›Û˜ÛXÚÏJ
+OO›[Ù[˜Û\ÜÓ\İœ™[[İ™J	ÛÛ‰ÊNÂ›[Ù[›Û˜ÛXÚÏYOOÚYŠK\™Ù]OO[[Ù[
+[[Ù[˜Û\ÜÓ\İœ™[[İ™J	ÛÛ‰Ê_NÂ‚™[˜İ[ÛˆœŠİKË‹š[İ›ÚÙKÏLŠ^ÂˆSX]›Z[Š‹ËÌ‹ÌŠNØİ˜™YÚ[”]
+
+NØİœ›İ[™™Xİ
+KËŠNÂˆYŠš[
+^Øİ™š[İ[OYš[Øİ™š[
+
+_HYŠİ›ÚÙJ^Øİœİ›ÚÙTİ[O\İ›ÚÙNØİ›[™UÚY[ÎØİœİ›ÚÙJ
+_BŸB™[˜İ[ÛˆÜ˜\
+İ^KX^ÚY[™RZYÚX^[™\ÏNNJ^ÂˆÛÛœİÛÜ™ÏTİš[™Ê^
+KœÜ]
+×ÊËÊNÛ][™OIÉË[™\ÏV×NÂˆ›ÜŠÛÛœİÛÜ™ÙˆÛÜ™Ê^ØÛÛœİ\İ[[™OÛ[™JÉÈ	ÊİÛÜ™ÛÜ™ÚYŠİ›YX\İ\™U^
+\İ
+KÚY›X^ÚY	‰›[™J^Û[™\Ëœ\Ú
+[™JNÛ[™O]ÛÜ™Y[ÙH[™O]\İBˆYŠ[™J[[™\Ëœ\Ú
+[™JNÂˆYŠ[™\Ë›[™İ›X^[™\Ê^Û[™\Ï[[™\ËœÛXÙJX^[™\ÊNÛ]\İ[[™\ÖÛX^[™\ËLWNİÚ[Jİ›YX\İ\™U^
+\İ
+Éø )‰ÊKÚY›X^ÚY	‰›\İ›[™İŒJ[\İ[\İœÛXÙJLJNÛ[™\ÖÛX^[™\ËLWO[\İ
+ÉÈ8 )‰ßBˆ[™\Ë™›Ü‘XXÚ
+
+JOO˜İ™š[^
+JÚJ›[™RZYÚ
+JNÜ™]\›ˆ[™\Ë›[™İ
+›[™RZYÚÂŸB™[˜İ[ÛˆØY[XYÙJÜ˜Ê^Ü™]\›ˆ™]È›ÛZ\ÙJ
+™\ÛÛ™K™Z™Xİ
+OOØÛÛœİ[YÏ[™]È[XYÙJ
+NÚ[YË›Û›ØYJ
+OOœ™\ÛÛ™J[YÊNÚ[YË›Û™\œ›Ü\™Z™XİÚ[YËœÜ˜Ï\Ü˜ßJ_B™[˜İ[Ûˆš][XYÙJİ[YËKË
+^ØÛÛœİÏSX]›Z[ŠËÚ[YËÚYÚ[YËšZYÚ
+NØÛÛœİÏZ[YËÚY
+œËZ[YËšZYÚ
+œÎØİ™˜]Ò[XYÙJ[YË
+ÊËYÊKÌ‹JÊY
+KÌ‹Ë
+_B™[˜İ[ÛˆÚ\˜ÛS[X™\Šİ‹KÛÛÜŠ^Øİ™š[İ[OXÛÛÜØİ˜™YÚ[”]
+
+NØİ˜\˜ÊKŒ‹X]”JŒŠNØİ™š[
+
+NØİ™š[İ[OIÈÙ™™‰ÎØİ™›ÛIÎLœ\šX[	ÎØİ^[YÛIØÙ[\‰ÎØİ^˜\Ù[[™OIÛZYIÎØİ™š[^
+‹JÌJNØİ™š[^[YÛIÛY	ÎØİ^˜\Ù[[™OIØ[X™]XÉßB‚
