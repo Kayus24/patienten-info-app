@@ -1,0 +1,56 @@
+name: Canonical image extract check
+
+on:
+  push:
+    branches: [canonical-image-finalize]
+    paths:
+      - '.github/workflows/canonical-image-extract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract embedded canonical WebP assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p canonical-extracted
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const files = [
+            'training/assets/canonical-v1/canonical-images.js',
+            'training/assets/canonical-v1/catalog-1.js',
+            'training/assets/canonical-v1/lateral-raise.js',
+            'training/assets/canonical-v1/lat-pulldown.js',
+            'training/assets/canonical-v1/dumbbell-row.js'
+          ].filter(fs.existsSync);
+          const assets = new Map();
+          for (const file of files) {
+            const s = fs.readFileSync(file, 'utf8');
+            let m;
+            const patterns = [
+              /["']([^"']+)["']\s*:\s*["']data:image\/webp;base64,([^"']+)["']/g,
+              /CANONICAL_EXERCISE_IMAGES\[["']([^"']+)["']\]\s*=\s*["']data:image\/webp;base64,([^"']+)["']/g
+            ];
+            for (const re of patterns) {
+              while ((m = re.exec(s)) !== null) assets.set(m[1], m[2]);
+            }
+          }
+          for (const [name,b64] of assets) {
+            fs.writeFileSync(path.join('canonical-extracted', `${name}.webp`), Buffer.from(b64, 'base64'));
+          }
+          console.log(`Extracted ${assets.size} assets:`);
+          console.log([...assets.keys()].sort().join('\n'));
+          NODE
+          sha256sum canonical-extracted/*.webp | sort
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canonical-extracted
+          path: canonical-extracted/*.webp
+          if-no-files-found: error
