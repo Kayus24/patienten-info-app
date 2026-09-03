@@ -54,3 +54,5 @@ jobs:
           name: canonical-extracted
           path: canonical-extracted/*.webp
           if-no-files-found: error
+
+# trigger extraction check
