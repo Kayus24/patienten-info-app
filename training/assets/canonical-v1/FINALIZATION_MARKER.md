@@ -1,0 +1,1 @@
+Canonical image finalization in progress on branch `canonical-final`. The branch is only merged to `main` after all 15 exercise images, style reference, catalog, and training page paths are present in one verified commit.
