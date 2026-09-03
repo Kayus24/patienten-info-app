@@ -1,0 +1,1 @@
+Legacy SVG/sprite assets are not valid for exercise cards.
