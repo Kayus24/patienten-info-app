@@ -1,0 +1,1 @@
+Final canonical exercise images are loaded by the training page only from assets in this folder. Legacy SVG/sprite paths are prohibited.
