@@ -1,0 +1,1 @@
+Canonical exercise images are committed as real WebP repository files. The training page must use direct `<img>` paths to these files. Do not replace them with sprites, CSS backgrounds, legacy SVG fallbacks, or embedded base64 bundles.
