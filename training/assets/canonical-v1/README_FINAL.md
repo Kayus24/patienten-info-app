@@ -1,0 +1,1 @@
+This folder is the only exercise-image source for `training/index.html`. Approved visual style and regression rules are in `STYLE_REFERENCE.md` and `ASSET_CATALOG.md`.
