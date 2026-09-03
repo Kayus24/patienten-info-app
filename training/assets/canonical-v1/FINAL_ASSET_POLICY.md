@@ -1,0 +1,1 @@
+Use the 15 canonical `.webp` files only. The production training page must reference them directly and must not silently reactivate any legacy image asset.
