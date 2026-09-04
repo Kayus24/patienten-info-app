@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hantel">
+  <g fill="none" stroke="#8b6800" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 32h30"/>
+    <path d="M10 24v16M15 20v24M49 20v24M54 24v16"/>
+    <path d="M6 28v8M58 28v8"/>
+  </g>
+</svg>
