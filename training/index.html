@@ -20,7 +20,7 @@ button{font:inherit}
 .heroHead{display:flex;justify-content:space-between;align-items:flex-start;gap:22px}
 .heroCopy{flex:1}
 .logoWrap{width:min(260px,29vw);flex:0 0 auto;display:flex;justify-content:flex-end}
-.logo{display:block;width:100%;height:auto;max-height:122px;object-fit:contain;object-position:right top;mix-blend-mode:multiply}
+.logo{display:block;width:100%;height:auto;max-height:122px;object-fit:contain;object-position:right top}
 .kicker{color:var(--orange);font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.74rem}
 h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-spacing:-.055em;margin:8px 0 8px}
 .sub{color:#294d79;font-weight:800;font-size:clamp(1.15rem,3vw,2rem);margin:0}
@@ -94,7 +94,9 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
   .grid{grid-template-columns:1fr}
 }
 @media(max-width:430px){
-  .logoWrap{width:116px}
+  .heroHead{display:block}
+  .logoWrap{width:150px;margin:10px 0 0 auto}
+  .logo{max-height:76px}
   .rule,.important{grid-template-columns:70px 1fr}
   .ruleBody{padding:14px 11px}
   .rule p,.rule li{font-size:.94rem}
@@ -120,7 +122,7 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
       <h1>Trainingsregeln</h1>
       <p class="sub">Für Ihr Krafttraining zu Hause</p>
     </div>
-    <div class="logoWrap"><img class="logo" src="assets/working-motion-logo.svg?v=20260904" alt="Working Motion"></div>
+    <div class="logoWrap"><img class="logo" src="assets/working-motion-logo.svg?v=visual-polish-v3" alt="Working Motion"></div>
   </div>
 
   <div class="rules">
@@ -194,7 +196,7 @@ const D=[
 ['Beine · hintere Kette',[['Deadlift','assets/canonical-v1/deadlift.webp'],['Kniebeuger','assets/canonical-v1/leg-curl.webp']]],
 ['Bauch',[['Plank','assets/canonical-v1/plank.webp'],['Beinheben','assets/canonical-v1/leg-raise.webp']]]
 ];
-const CACHE='?v=training-rules-final-20260904';
+const CACHE='?v=visual-polish-v3-20260904';
 const sel=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips');
 
 function render(){
@@ -231,7 +233,7 @@ function loadImage(src){
     const i=new Image();
     i.onload=()=>ok(i);
     i.onerror=()=>no(new Error('Bild konnte nicht geladen werden: '+src));
-    i.src=src+(src.includes('?')?'&':'?')+'cb=20260904';
+    i.src=src+(src.includes('?')?'&':'?')+'cb=visual-polish-v3-20260904';
   });
 }
 function wrap(ctx,text,x,y,w,lh){
@@ -258,6 +260,45 @@ function drawNumber(ctx,n,x,y,color){
   ctx.fillStyle='#fff';ctx.font='900 30px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(n),x,y+1);
   ctx.textAlign='left';ctx.textBaseline='alphabetic';
 }
+
+function drawCalendarIcon(ctx,cx,cy,s,color){
+  const x=cx-s/2,y=cy-s/2,w=s,h=s*.82;
+  ctx.save();ctx.lineWidth=Math.max(3,s*.07);ctx.strokeStyle=color;ctx.fillStyle='#fff';
+  ctx.beginPath();ctx.roundRect(x,y+5,w,h,7);ctx.fill();ctx.stroke();
+  ctx.fillStyle=color;ctx.fillRect(x,y+15,w,9);
+  ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x+w*.27,y);ctx.lineTo(x+w*.27,y+13);ctx.moveTo(x+w*.73,y);ctx.lineTo(x+w*.73,y+13);ctx.stroke();
+  ctx.lineWidth=Math.max(3,s*.065);ctx.beginPath();ctx.moveTo(x+w*.50,y+h*.62);ctx.lineTo(x+w*.61,y+h*.73);ctx.lineTo(x+w*.84,y+h*.47);ctx.stroke();
+  ctx.restore();
+}
+function drawExerciseIcon(ctx,cx,cy,s,color){
+  ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineCap='round';ctx.lineJoin='round';
+  const r=s*.12;ctx.beginPath();ctx.arc(cx,cy-s*.23,r,0,Math.PI*2);ctx.fill();
+  ctx.lineWidth=s*.11;
+  ctx.beginPath();ctx.moveTo(cx,cy-s*.08);ctx.lineTo(cx,cy+s*.18);ctx.moveTo(cx,cy);ctx.lineTo(cx-s*.22,cy+s*.12);ctx.moveTo(cx,cy);ctx.lineTo(cx+s*.20,cy-s*.02);ctx.moveTo(cx,cy+s*.18);ctx.lineTo(cx-s*.13,cy+s*.37);ctx.moveTo(cx,cy+s*.18);ctx.lineTo(cx+s*.14,cy+s*.37);ctx.stroke();
+  ctx.lineWidth=s*.07;ctx.beginPath();ctx.moveTo(cx+s*.21,cy-s*.02);ctx.lineTo(cx+s*.39,cy-s*.13);ctx.stroke();
+  const bx=cx+s*.44,by=cy-s*.16,plate=s*.10;
+  ctx.fillRect(bx-s*.17,by-s*.035,s*.34,s*.07);ctx.fillRect(bx-s*.22,by-plate/2,s*.07,plate);ctx.fillRect(bx+s*.15,by-plate/2,s*.07,plate);
+  ctx.restore();
+}
+function drawBarbellIcon(ctx,cx,cy,s,color){
+  ctx.save();ctx.fillStyle=color;
+  const h=s*.44;ctx.fillRect(cx-s*.30,cy-s*.04,s*.60,s*.08);
+  ctx.fillRect(cx-s*.43,cy-h*.34,s*.09,h*.68);ctx.fillRect(cx-s*.34,cy-h*.48,s*.09,h*.96);
+  ctx.fillRect(cx+s*.34,cy-h*.34,s*.09,h*.68);ctx.fillRect(cx+s*.25,cy-h*.48,s*.09,h*.96);
+  ctx.restore();
+}
+function drawHeartIcon(ctx,cx,cy,s,color){
+  ctx.save();ctx.fillStyle=color;ctx.beginPath();
+  const x=cx,y=cy-s*.04;
+  ctx.moveTo(x,y+s*.38);
+  ctx.bezierCurveTo(x-s*.48,y+s*.08,x-s*.44,y-s*.34,x-s*.17,y-s*.34);
+  ctx.bezierCurveTo(x-s*.03,y-s*.34,x,y-s*.22,x,y-s*.15);
+  ctx.bezierCurveTo(x,y-s*.22,x+s*.03,y-s*.34,x+s*.17,y-s*.34);
+  ctx.bezierCurveTo(x+s*.44,y-s*.34,x+s*.48,y+s*.08,x,y+s*.38);ctx.fill();
+  ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(3,s*.065);ctx.lineJoin='round';ctx.beginPath();
+  ctx.moveTo(cx-s*.37,cy);ctx.lineTo(cx-s*.17,cy);ctx.lineTo(cx-s*.08,cy-s*.16);ctx.lineTo(cx+s*.03,cy+s*.18);ctx.lineTo(cx+s*.13,cy);ctx.lineTo(cx+s*.36,cy);ctx.stroke();
+  ctx.restore();
+}
 async function poster(){
   const exercises=selectedExercises();
   if(!exercises.length)throw new Error('Bitte wählen Sie zuerst mindestens eine Muskelgruppe aus.');
@@ -275,13 +316,13 @@ async function poster(){
 
   let y=185;
   rounded(x,M,y,contentW,150,18,'#72af92','#fff');
-  x.fillStyle='#edf8f2';x.fillRect(M+2,y+2,125,146);drawNumber(x,1,M+64,y+47,'#18794e');
+  x.fillStyle='#edf8f2';x.fillRect(M+2,y+2,125,146);drawNumber(x,1,M+64,y+43,'#18794e');drawCalendarIcon(x,M+64,y+106,58,'#18794e');
   x.fillStyle='#18794e';x.font='900 36px Arial';x.fillText('Häufigkeit',M+155,y+55);
   x.fillStyle='#111';x.font='30px Arial';x.fillText('2× pro Woche trainieren',M+155,y+105);
   y+=170;
 
   rounded(x,M,y,contentW,exH,18,'#79aede','#fff');
-  x.fillStyle='#edf5fb';x.fillRect(M+2,y+2,125,exH-4);drawNumber(x,2,M+64,y+47,'#246dad');
+  x.fillStyle='#edf5fb';x.fillRect(M+2,y+2,125,exH-4);drawNumber(x,2,M+64,y+43,'#246dad');drawExerciseIcon(x,M+64,y+118,66,'#246dad');
   x.fillStyle='#246dad';x.font='900 36px Arial';x.fillText('Übungen',M+155,y+55);
   let ey=y+78;
   exercises.forEach((e,idx)=>{
@@ -293,7 +334,7 @@ async function poster(){
   y+=exH+20;
 
   rounded(x,M,y,contentW,200,18,'#e8bd57','#fff');
-  x.fillStyle='#fff8e5';x.fillRect(M+2,y+2,125,196);drawNumber(x,3,M+64,y+47,'#d89400');
+  x.fillStyle='#fff8e5';x.fillRect(M+2,y+2,125,196);drawNumber(x,3,M+64,y+43,'#d89400');drawBarbellIcon(x,M+64,y+128,70,'#3b4148');
   x.fillStyle='#a76700';x.font='900 36px Arial';x.fillText('Umfang',M+155,y+52);
   x.fillStyle='#111';x.font='26px Arial';
   x.fillText('•  Jede Übung: 3 Sätze',M+165,y+93);
@@ -302,7 +343,7 @@ async function poster(){
   y+=220;
 
   rounded(x,M,y,contentW,310,18,'#e78282','#fff');
-  x.fillStyle='#fff1f1';x.fillRect(M+2,y+2,125,306);drawNumber(x,4,M+64,y+47,'#c4272c');
+  x.fillStyle='#fff1f1';x.fillRect(M+2,y+2,125,306);drawNumber(x,4,M+64,y+43,'#c4272c');drawHeartIcon(x,M+64,y+132,70,'#c4272c');
   x.fillStyle='#c4272c';x.font='900 36px Arial';x.fillText('Schmerzregel',M+155,y+50);
   const sx=M+165,sy=y+92,sw=850;
   x.font='900 20px Arial';x.textAlign='center';
@@ -320,8 +361,11 @@ async function poster(){
   rounded(x,M,y,contentW,100,18,'#e6b43c','#fffaf0');
   x.fillStyle='#f0b400';x.beginPath();x.arc(M+65,y+50,31,0,Math.PI*2);x.fill();
   x.fillStyle='#fff';x.font='900 46px Arial';x.textAlign='center';x.textBaseline='middle';x.fillText('!',M+65,y+52);
-  x.textAlign='left';x.textBaseline='alphabetic';x.fillStyle='#111';x.font='900 28px Arial';x.fillText('Wichtig:',M+125,y+46);
-  x.font='26px Arial';wrap(x,'Schmerz bis 5/10 beim Training ist okay – danach sollte es nicht mehr werden.',M+245,y+46,contentW-275,32);
+  x.textAlign='left';x.textBaseline='alphabetic';x.fillStyle='#111';
+  const importantLabelX=M+125,importantTextY=y+47;
+  x.font='900 28px Arial';x.fillText('Wichtig:',importantLabelX,importantTextY);
+  const importantTextX=importantLabelX+x.measureText('Wichtig:').width+16;
+  x.font='26px Arial';wrap(x,'Schmerz bis 5/10 beim Training ist okay – danach sollte es nicht mehr werden.',importantTextX,importantTextY,M+contentW-importantTextX-24,32);
 
   return c;
 }
