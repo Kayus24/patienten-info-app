@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kalender">
+  <g fill="none" stroke="#18794e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="9" y="13" width="46" height="42" rx="8"/>
+    <path d="M9 25h46M20 8v11M44 8v11"/>
+    <path d="M21 40l7 7 15-17"/>
+  </g>
+</svg>
