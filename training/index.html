@@ -20,7 +20,7 @@ button{font:inherit}
 .heroHead{display:flex;justify-content:space-between;align-items:flex-start;gap:22px}
 .heroCopy{flex:1}
 .logoWrap{width:min(260px,29vw);flex:0 0 auto;display:flex;justify-content:flex-end}
-.logo{display:block;width:100%;height:auto;max-height:122px;object-fit:contain;object-position:right top}
+.logoMark{display:block;width:100%;aspect-ratio:600/298;background:#2f8f83;-webkit-mask:url("assets/working-motion-logo.svg?v=visual-polish-v4") center/contain no-repeat;mask:url("assets/working-motion-logo.svg?v=visual-polish-v4") center/contain no-repeat}
 .kicker{color:var(--orange);font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.74rem}
 h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-spacing:-.055em;margin:8px 0 8px}
 .sub{color:#294d79;font-weight:800;font-size:clamp(1.15rem,3vw,2rem);margin:0}
@@ -30,7 +30,7 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
 .ruleBody{padding:20px 24px}
 .rule h2{margin:0 0 10px;font-size:clamp(1.5rem,4vw,2.35rem);letter-spacing:-.03em}
 .num{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.75rem;font-weight:900;box-shadow:inset 0 -3px 8px #0001}
-.icon{width:58px;height:58px;display:block}
+.icon{width:58px;height:58px;display:block;object-fit:contain}
 .rule p,.rule li{font-size:clamp(1rem,2vw,1.18rem);line-height:1.42;margin:.4em 0}
 .rule ul{margin:5px 0 0;padding-left:24px}
 .rule.green{border-color:#72af92}.rule.green .ruleSide{background:var(--green-soft)}.rule.green h2{color:var(--green)}.rule.green .num{background:var(--green)}
@@ -96,7 +96,6 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
 @media(max-width:430px){
   .heroHead{display:block}
   .logoWrap{width:150px;margin:10px 0 0 auto}
-  .logo{max-height:76px}
   .rule,.important{grid-template-columns:70px 1fr}
   .ruleBody{padding:14px 11px}
   .rule p,.rule li{font-size:.94rem}
@@ -122,14 +121,14 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
       <h1>Trainingsregeln</h1>
       <p class="sub">Für Ihr Krafttraining zu Hause</p>
     </div>
-    <div class="logoWrap"><img class="logo" src="assets/working-motion-logo.svg?v=visual-polish-v3" alt="Working Motion"></div>
+    <div class="logoWrap"><span class="logoMark" role="img" aria-label="Working Motion"></span></div>
   </div>
 
   <div class="rules">
     <article class="rule green">
       <div class="ruleSide">
         <span class="num">1</span>
-        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="14" width="42" height="39" rx="6" fill="#fff" stroke="#18794e" stroke-width="4"/><path d="M10 24h42" stroke="#18794e" stroke-width="5"/><path d="M20 9v10M42 9v10" stroke="#18794e" stroke-width="5" stroke-linecap="round"/><path d="m34 43 6 6 12-15" fill="none" stroke="#18794e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <img class="icon" src="assets/rules/calendar.svg?v=visual-polish-v4" alt="" aria-hidden="true">
       </div>
       <div class="ruleBody"><h2>Häufigkeit</h2><p><b>2× pro Woche trainieren.</b></p><p>Zwischen den Einheiten möglichst Erholung einplanen.</p></div>
     </article>
@@ -137,7 +136,7 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
     <article class="rule gold">
       <div class="ruleSide">
         <span class="num">2</span>
-        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 27h7v10H8zM15 22h7v20h-7zM42 22h7v20h-7zM49 27h7v10h-7zM22 29h20v6H22z" fill="#8b6800"/></svg>
+        <img class="icon" src="assets/rules/barbell.svg?v=visual-polish-v4" alt="" aria-hidden="true">
       </div>
       <div class="ruleBody"><h2>Umfang</h2><ul><li>Jede Übung: <b>3 Sätze</b></li><li><b>6–12 Wiederholungen</b> pro Satz</li><li>Wenn Sie 12 Wiederholungen schaffen, <b>Gewicht erhöhen.</b></li></ul></div>
     </article>
@@ -145,7 +144,7 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
     <article class="rule red">
       <div class="ruleSide">
         <span class="num">3</span>
-        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 55S8 41 8 22c0-12 15-17 24-6 9-11 24-6 24 6 0 19-24 33-24 33Z" fill="#c4272c"/><path d="M12 33h11l5-12 7 24 6-12h11" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
+        <img class="icon" src="assets/rules/heart.svg?v=visual-polish-v4" alt="" aria-hidden="true">
       </div>
       <div class="ruleBody">
         <h2>Schmerzregel</h2>
@@ -196,7 +195,7 @@ const D=[
 ['Beine · hintere Kette',[['Deadlift','assets/canonical-v1/deadlift.webp'],['Kniebeuger','assets/canonical-v1/leg-curl.webp']]],
 ['Bauch',[['Plank','assets/canonical-v1/plank.webp'],['Beinheben','assets/canonical-v1/leg-raise.webp']]]
 ];
-const CACHE='?v=visual-polish-v3-20260904';
+const CACHE='?v=visual-polish-v4-20260904';
 const sel=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips');
 
 function render(){
@@ -233,7 +232,7 @@ function loadImage(src){
     const i=new Image();
     i.onload=()=>ok(i);
     i.onerror=()=>no(new Error('Bild konnte nicht geladen werden: '+src));
-    i.src=src+(src.includes('?')?'&':'?')+'cb=visual-polish-v3-20260904';
+    i.src=src+(src.includes('?')?'&':'?')+'cb=visual-polish-v4-20260904';
   });
 }
 function wrap(ctx,text,x,y,w,lh){
@@ -255,54 +254,29 @@ function drawContained(ctx,img,x,y,w,h){
   const dw=img.naturalWidth*s,dh=img.naturalHeight*s;
   ctx.drawImage(img,x+(w-dw)/2,y+(h-dh)/2,dw,dh);
 }
+function drawTintedContained(ctx,img,x,y,w,h,color){
+  const s=Math.min(w/img.naturalWidth,h/img.naturalHeight);
+  const dw=Math.max(1,Math.round(img.naturalWidth*s)),dh=Math.max(1,Math.round(img.naturalHeight*s));
+  const off=document.createElement('canvas');off.width=dw;off.height=dh;
+  const ox=off.getContext('2d');ox.drawImage(img,0,0,dw,dh);ox.globalCompositeOperation='source-in';ox.fillStyle=color;ox.fillRect(0,0,dw,dh);
+  ctx.drawImage(off,x+(w-dw)/2,y+(h-dh)/2,dw,dh);
+}
 function drawNumber(ctx,n,x,y,color){
   ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,30,0,Math.PI*2);ctx.fill();
   ctx.fillStyle='#fff';ctx.font='900 30px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(n),x,y+1);
   ctx.textAlign='left';ctx.textBaseline='alphabetic';
 }
 
-function drawCalendarIcon(ctx,cx,cy,s,color){
-  const x=cx-s/2,y=cy-s/2,w=s,h=s*.82;
-  ctx.save();ctx.lineWidth=Math.max(3,s*.07);ctx.strokeStyle=color;ctx.fillStyle='#fff';
-  ctx.beginPath();ctx.roundRect(x,y+5,w,h,7);ctx.fill();ctx.stroke();
-  ctx.fillStyle=color;ctx.fillRect(x,y+15,w,9);
-  ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x+w*.27,y);ctx.lineTo(x+w*.27,y+13);ctx.moveTo(x+w*.73,y);ctx.lineTo(x+w*.73,y+13);ctx.stroke();
-  ctx.lineWidth=Math.max(3,s*.065);ctx.beginPath();ctx.moveTo(x+w*.50,y+h*.62);ctx.lineTo(x+w*.61,y+h*.73);ctx.lineTo(x+w*.84,y+h*.47);ctx.stroke();
-  ctx.restore();
-}
-function drawExerciseIcon(ctx,cx,cy,s,color){
-  ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineCap='round';ctx.lineJoin='round';
-  const r=s*.12;ctx.beginPath();ctx.arc(cx,cy-s*.23,r,0,Math.PI*2);ctx.fill();
-  ctx.lineWidth=s*.11;
-  ctx.beginPath();ctx.moveTo(cx,cy-s*.08);ctx.lineTo(cx,cy+s*.18);ctx.moveTo(cx,cy);ctx.lineTo(cx-s*.22,cy+s*.12);ctx.moveTo(cx,cy);ctx.lineTo(cx+s*.20,cy-s*.02);ctx.moveTo(cx,cy+s*.18);ctx.lineTo(cx-s*.13,cy+s*.37);ctx.moveTo(cx,cy+s*.18);ctx.lineTo(cx+s*.14,cy+s*.37);ctx.stroke();
-  ctx.lineWidth=s*.07;ctx.beginPath();ctx.moveTo(cx+s*.21,cy-s*.02);ctx.lineTo(cx+s*.39,cy-s*.13);ctx.stroke();
-  const bx=cx+s*.44,by=cy-s*.16,plate=s*.10;
-  ctx.fillRect(bx-s*.17,by-s*.035,s*.34,s*.07);ctx.fillRect(bx-s*.22,by-plate/2,s*.07,plate);ctx.fillRect(bx+s*.15,by-plate/2,s*.07,plate);
-  ctx.restore();
-}
-function drawBarbellIcon(ctx,cx,cy,s,color){
-  ctx.save();ctx.fillStyle=color;
-  const h=s*.44;ctx.fillRect(cx-s*.30,cy-s*.04,s*.60,s*.08);
-  ctx.fillRect(cx-s*.43,cy-h*.34,s*.09,h*.68);ctx.fillRect(cx-s*.34,cy-h*.48,s*.09,h*.96);
-  ctx.fillRect(cx+s*.34,cy-h*.34,s*.09,h*.68);ctx.fillRect(cx+s*.25,cy-h*.48,s*.09,h*.96);
-  ctx.restore();
-}
-function drawHeartIcon(ctx,cx,cy,s,color){
-  ctx.save();ctx.fillStyle=color;ctx.beginPath();
-  const x=cx,y=cy-s*.04;
-  ctx.moveTo(x,y+s*.38);
-  ctx.bezierCurveTo(x-s*.48,y+s*.08,x-s*.44,y-s*.34,x-s*.17,y-s*.34);
-  ctx.bezierCurveTo(x-s*.03,y-s*.34,x,y-s*.22,x,y-s*.15);
-  ctx.bezierCurveTo(x,y-s*.22,x+s*.03,y-s*.34,x+s*.17,y-s*.34);
-  ctx.bezierCurveTo(x+s*.44,y-s*.34,x+s*.48,y+s*.08,x,y+s*.38);ctx.fill();
-  ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(3,s*.065);ctx.lineJoin='round';ctx.beginPath();
-  ctx.moveTo(cx-s*.37,cy);ctx.lineTo(cx-s*.17,cy);ctx.lineTo(cx-s*.08,cy-s*.16);ctx.lineTo(cx+s*.03,cy+s*.18);ctx.lineTo(cx+s*.13,cy);ctx.lineTo(cx+s*.36,cy);ctx.stroke();
-  ctx.restore();
-}
 async function poster(){
   const exercises=selectedExercises();
   if(!exercises.length)throw new Error('Bitte wählen Sie zuerst mindestens eine Muskelgruppe aus.');
-  const logo=await loadImage('assets/working-motion-logo.svg');
+  const [logo,calendarIcon,exerciseIcon,barbellIcon,heartIcon]=await Promise.all([
+    loadImage('assets/working-motion-logo.svg'),
+    loadImage('assets/rules/calendar.svg'),
+    loadImage('assets/rules/exercises.svg'),
+    loadImage('assets/rules/barbell.svg'),
+    loadImage('assets/rules/heart.svg')
+  ]);
   const images=await Promise.all(exercises.map(e=>loadImage(e[1])));
   const W=1200,M=55,contentW=W-M*2;
   const exRows=Math.ceil(exercises.length/2),exH=90+exRows*245;
@@ -312,17 +286,17 @@ async function poster(){
 
   x.fillStyle='#102b50';x.font='900 70px Arial';x.fillText('Trainingsregeln',M,90);
   x.font='900 34px Arial';x.fillStyle='#294d79';x.fillText('Für Ihr Krafttraining zu Hause',M,137);
-  drawContained(x,logo,W-335,28,280,115);
+  drawTintedContained(x,logo,W-335,28,280,115,'#2f8f83');
 
   let y=185;
   rounded(x,M,y,contentW,150,18,'#72af92','#fff');
-  x.fillStyle='#edf8f2';x.fillRect(M+2,y+2,125,146);drawNumber(x,1,M+64,y+43,'#18794e');drawCalendarIcon(x,M+64,y+106,58,'#18794e');
+  x.fillStyle='#edf8f2';x.fillRect(M+2,y+2,125,146);drawNumber(x,1,M+64,y+43,'#18794e');drawContained(x,calendarIcon,M+34,y+75,60,60);
   x.fillStyle='#18794e';x.font='900 36px Arial';x.fillText('Häufigkeit',M+155,y+55);
   x.fillStyle='#111';x.font='30px Arial';x.fillText('2× pro Woche trainieren',M+155,y+105);
   y+=170;
 
   rounded(x,M,y,contentW,exH,18,'#79aede','#fff');
-  x.fillStyle='#edf5fb';x.fillRect(M+2,y+2,125,exH-4);drawNumber(x,2,M+64,y+43,'#246dad');drawExerciseIcon(x,M+64,y+118,66,'#246dad');
+  x.fillStyle='#edf5fb';x.fillRect(M+2,y+2,125,exH-4);drawNumber(x,2,M+64,y+43,'#246dad');drawContained(x,exerciseIcon,M+28,y+82,72,72);
   x.fillStyle='#246dad';x.font='900 36px Arial';x.fillText('Übungen',M+155,y+55);
   let ey=y+78;
   exercises.forEach((e,idx)=>{
@@ -334,7 +308,7 @@ async function poster(){
   y+=exH+20;
 
   rounded(x,M,y,contentW,200,18,'#e8bd57','#fff');
-  x.fillStyle='#fff8e5';x.fillRect(M+2,y+2,125,196);drawNumber(x,3,M+64,y+43,'#d89400');drawBarbellIcon(x,M+64,y+128,70,'#3b4148');
+  x.fillStyle='#fff8e5';x.fillRect(M+2,y+2,125,196);drawNumber(x,3,M+64,y+43,'#d89400');drawContained(x,barbellIcon,M+28,y+92,72,72);
   x.fillStyle='#a76700';x.font='900 36px Arial';x.fillText('Umfang',M+155,y+52);
   x.fillStyle='#111';x.font='26px Arial';
   x.fillText('•  Jede Übung: 3 Sätze',M+165,y+93);
@@ -343,7 +317,7 @@ async function poster(){
   y+=220;
 
   rounded(x,M,y,contentW,310,18,'#e78282','#fff');
-  x.fillStyle='#fff1f1';x.fillRect(M+2,y+2,125,306);drawNumber(x,4,M+64,y+43,'#c4272c');drawHeartIcon(x,M+64,y+132,70,'#c4272c');
+  x.fillStyle='#fff1f1';x.fillRect(M+2,y+2,125,306);drawNumber(x,4,M+64,y+43,'#c4272c');drawContained(x,heartIcon,M+28,y+92,72,72);
   x.fillStyle='#c4272c';x.font='900 36px Arial';x.fillText('Schmerzregel',M+155,y+50);
   const sx=M+165,sy=y+92,sw=850;
   x.font='900 20px Arial';x.textAlign='center';
