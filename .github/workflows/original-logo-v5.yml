@@ -11,29 +11,58 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: original-logo-v5
-      - name: Verify official logo and patch training page
+      - name: Recover exact official logo and patch training page
         run: |
           python - <<'PY'
           from pathlib import Path
-          import hashlib
-          logo=Path('training/assets/working-motion_logo.png')
+          from urllib.request import Request, urlopen
+          from urllib.parse import urljoin
+          import hashlib,re
           expected='7769a633955c427e84583ec236e86357fff88a81abc62102e7ee18c9590ede22'
-          got=hashlib.sha256(logo.read_bytes()).hexdigest()
-          print('logo_sha256='+got)
-          if got != expected:
-              raise SystemExit('OFFICIAL_LOGO_SHA_MISMATCH')
-          p=Path('training/index.html')
-          s=p.read_text()
+          home='https://www.working-motion.de/'
+          def get(url):
+              req=Request(url,headers={'User-Agent':'Mozilla/5.0'})
+              with urlopen(req,timeout=25) as r: return r.read(),r.geturl(),r.headers.get_content_type()
+          html,final,_=get(home)
+          text=html.decode('utf-8','ignore')
+          candidates=set()
+          attrs=re.findall(r'''(?:src|href|data-src|data-lazy-src|srcset)=["']([^"']+)["']''',text,re.I)
+          for val in attrs:
+              for part in val.split(','):
+                  u=part.strip().split()[0] if part.strip() else ''
+                  if u: candidates.add(urljoin(final,u))
+          css_urls={u for u in candidates if u.lower().split('?')[0].endswith('.css')}
+          for css in css_urls:
+              try:
+                  data,css_final,_=get(css); ct=data.decode('utf-8','ignore')
+                  for u in re.findall(r'url\(["\']?([^"\')]+)',ct,re.I): candidates.add(urljoin(css_final,u.strip()))
+              except Exception as e: print('css_skip',css,type(e).__name__)
+          image_ext=('.png','.jpg','.jpeg','.webp','.gif','.svg')
+          checked=0; found=None
+          for u in sorted(candidates):
+              if not u.lower().split('?')[0].endswith(image_ext): continue
+              try:
+                  data,resolved,_=get(u); checked+=1
+                  sha=hashlib.sha256(data).hexdigest()
+                  if sha==expected:
+                      found=(data,resolved); break
+              except Exception: pass
+          print('image_candidates_checked='+str(checked))
+          if not found: raise SystemExit('OFFICIAL_LOGO_NOT_FOUND_BY_EXPECTED_SHA')
+          data,source=found
+          logo=Path('training/assets/working-motion_logo.png'); logo.write_bytes(data)
+          print('logo_source_url='+source)
+          print('logo_sha256='+hashlib.sha256(data).hexdigest())
+          p=Path('training/index.html'); s=p.read_text()
           reps=[
             ('.logoMark{display:block;width:100%;aspect-ratio:600/298;background:#2f8f83;-webkit-mask:url("assets/working-motion-logo.svg?v=visual-polish-v4") center/contain no-repeat;mask:url("assets/working-motion-logo.svg?v=visual-polish-v4") center/contain no-repeat}', '.logo{display:block;width:100%;height:auto;object-fit:contain}'),
             ('<div class="logoWrap"><span class="logoMark" role="img" aria-label="Working Motion"></span></div>', '<div class="logoWrap"><img class="logo" src="assets/working-motion_logo.png?v=original-logo-v5" alt="Working Motion"></div>'),
             ("const CACHE='?v=visual-polish-v4-20260904';", "const CACHE='?v=original-logo-v5-20260907';"),
-            ("cb=visual-polish-v4-20260904", "cb=original-logo-v5-20260907"),
+            ('cb=visual-polish-v4-20260904','cb=original-logo-v5-20260907'),
             ("loadImage('assets/working-motion-logo.svg')", "loadImage('assets/working-motion_logo.png')"),
-            ("drawTintedContained(x,logo,W-335,28,280,115,'#2f8f83');", "drawContained(x,logo,W-335,28,280,115);")
-          ]
+            ("drawTintedContained(x,logo,W-335,28,280,115,'#2f8f83');", 'drawContained(x,logo,W-335,28,280,115);')]
           for old,new in reps:
-              if old not in s: raise SystemExit('EXPECTED_FRAGMENT_MISSING: '+old[:80])
+              if old not in s: raise SystemExit('EXPECTED_FRAGMENT_MISSING: '+old[:70])
               s=s.replace(old,new,1)
           old="""function drawTintedContained(ctx,img,x,y,w,h,color){
             const s=Math.min(w/img.naturalWidth,h/img.naturalHeight);
@@ -45,17 +74,13 @@ jobs:
           """
           if old not in s: raise SystemExit('TINT_FUNCTION_NOT_FOUND')
           s=s.replace(old,'',1)
-          forbidden=['logoMark','working-motion-logo.svg','drawTintedContained','#2f8f83']
-          for x in forbidden:
+          for x in ['logoMark','working-motion-logo.svg','drawTintedContained','#2f8f83']:
               if x in s: raise SystemExit('FORBIDDEN_REMAINS: '+x)
           if s.count('assets/canonical-v1/') < 16: raise SystemExit('CANONICAL_REFERENCES_REGRESSED')
           p.write_text(s)
+          a=s.index('<script>')+8; b=s.index('</script>',a); Path('/tmp/training.js').write_text(s[a:b])
           PY
-          node --check <(python - <<'PY'
-          from pathlib import Path
-          s=Path('training/index.html').read_text(); a=s.index('<script>')+8; b=s.index('</script>',a); print(s[a:b])
-          PY
-          )
+          node --check /tmp/training.js
       - name: Commit verified V5 patch and remove temporary workflow
         run: |
           rm .github/workflows/original-logo-v5.yml
