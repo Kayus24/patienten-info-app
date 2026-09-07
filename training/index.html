@@ -70,7 +70,11 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{background:#f2f5f7;border-radius:999px;padding:7px 10px;font-size:.78rem;font-weight:800;color:#34495f}
 .hint{font-size:.88rem;line-height:1.45;color:#536270}
-.fab{position:fixed;right:18px;bottom:18px;width:62px;height:62px;border:0;border-radius:50%;background:var(--orange);color:#fff;font-size:1.55rem;box-shadow:0 14px 34px rgba(243,108,33,.35);z-index:10;cursor:pointer}
+.fab{position:fixed;right:18px;bottom:18px;width:62px;height:62px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#fff;box-shadow:0 14px 34px rgba(243,108,33,.35);z-index:10;cursor:pointer}
+.fabIcon{width:30px;height:30px;display:block}
+.badge{position:absolute;top:-3px;left:-3px;min-width:23px;height:23px;padding:0 5px;border:2px solid #fff;border-radius:999px;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:.72rem;line-height:1;font-weight:900;box-shadow:0 2px 8px rgba(16,43,80,.3);z-index:1}
+.badge[hidden]{display:none}
+.selection-ball{position:fixed;left:0;top:0;width:11px;height:11px;border-radius:50%;background:var(--gray);box-shadow:0 2px 7px rgba(29,39,51,.25);pointer-events:none;z-index:30;will-change:transform}
 .modal{position:fixed;inset:0;background:#0008;display:none;place-items:center;padding:18px;z-index:20}
 .modal.on{display:grid}
 .sheet{width:min(440px,100%);background:#fff;border-radius:22px;padding:22px;box-shadow:0 22px 70px #0004}
@@ -109,6 +113,9 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
   .printzone{display:block}
   .printzone img{width:100%;height:auto}
   @page{margin:7mm}
+}
+@media(prefers-reduced-motion:reduce){
+  .card{transition:none}
 }
 </style>
 </head>
@@ -178,7 +185,15 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
 </section>
 </main>
 
-<button id="fab" class="fab" aria-label="Trainingsplan ausgeben">⎙</button>
+<button id="fab" class="fab" aria-label="Trainingsplan ausgeben">
+  <span id="badge" class="badge" hidden aria-live="polite"></span>
+  <svg class="fabIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <rect x="3.5" y="3.5" width="17" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="8" cy="7.8" r="1.25" fill="currentColor"/>
+    <path d="m5.5 14 3.7-3.7 3 2.9 2.4-2.2 3.4 3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 12.5v8M9.2 17.7 12 20.5l2.8-2.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="sheet"><button id="close" class="close" aria-label="Schließen">×</button><h3 id="modalTitle">Trainingsplan ausgeben</h3><p>Die ausgewählten Übungen werden ohne Duplikate in den Trainingsplan übernommen.</p><div class="actions"><button id="png" class="png">PNG speichern</button><button id="print" class="print">Direkt drucken</button></div></div>
 </div>
@@ -196,7 +211,35 @@ const D=[
 ['Bauch',[['Plank','assets/canonical-v1/plank.webp'],['Beinheben','assets/canonical-v1/leg-raise.webp']]]
 ];
 const CACHE='?v=original-logo-v5-20260907';
-const sel=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips');
+const sel=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips'),fab=document.getElementById('fab'),badge=document.getElementById('badge');
+
+function updateBadge(){
+  const n=sel.size;
+  badge.textContent=String(n);
+  badge.hidden=n===0;
+  badge.setAttribute('aria-label',n+' Muskelgruppe'+(n===1?'':'n')+' ausgewählt');
+}
+
+function animateSelection(startRect){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const endRect=fab.getBoundingClientRect(),size=11;
+  const startX=startRect.left+startRect.width/2-size/2,startY=startRect.top+startRect.height/2-size/2;
+  const endX=endRect.left+endRect.width/2-size/2,endY=endRect.top+endRect.height/2-size/2;
+  const dx=endX-startX,lift=Math.max(70,Math.min(160,Math.abs(dx)*.25+55));
+  const ball=document.createElement('span');
+  ball.className='selection-ball';
+  ball.setAttribute('aria-hidden','true');
+  document.body.appendChild(ball);
+  const animation=ball.animate([
+    {transform:'translate3d('+startX+'px,'+startY+'px,0)'},
+    {transform:'translate3d('+(startX+dx*.3)+'px,'+(startY-lift)+'px,0)'},
+    {transform:'translate3d('+(startX+dx*.72)+'px,'+(endY-lift*.55)+'px,0)'},
+    {transform:'translate3d('+endX+'px,'+endY+'px,0)'}
+  ],{duration:550,easing:'cubic-bezier(.22,.72,.34,1)',fill:'forwards'});
+  const remove=()=>ball.remove();
+  animation.addEventListener('finish',remove,{once:true});
+  animation.addEventListener('cancel',remove,{once:true});
+}
 
 function render(){
   grid.innerHTML='';
@@ -205,12 +248,18 @@ function render(){
     b.type='button'; b.className='card'+(sel.has(i)?' sel':'');
     b.setAttribute('aria-pressed',sel.has(i)?'true':'false');
     b.innerHTML='<div class="cardHead"><h3>'+d[0]+'</h3><span class="tag">2 Übungen</span></div><div class="exgrid">'+d[1].map(e=>'<div class="exercise"><div class="thumb"><img src="'+e[1]+CACHE+'" alt="'+e[0]+'" loading="eager"></div><b>'+e[0]+'</b></div>').join('')+'</div>';
-    b.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);render()};
+    b.onclick=()=>{
+      const wasSelected=sel.has(i),startRect=b.getBoundingClientRect();
+      wasSelected?sel.delete(i):sel.add(i);
+      render();
+      if(!wasSelected)animateSelection(startRect);
+    };
     grid.appendChild(b);
   });
   count.textContent=sel.size+' Muskelgruppe'+(sel.size===1?'':'n')+' ausgewählt';
   const c=[...sel].sort((a,b)=>a-b).map(i=>'<span class="chip">'+D[i][0]+': '+D[i][1].map(e=>e[0]).join(' · ')+'</span>');
   chips.innerHTML=c.join('')||'<span class="chip">Noch nichts ausgewählt.</span>';
+  updateBadge();
 }
 render();
 
@@ -220,7 +269,7 @@ function selectedExercises(){
   return [...byPath.values()];
 }
 const modal=document.getElementById('modal');
-document.getElementById('fab').onclick=()=>{
+fab.onclick=()=>{
   if(!sel.size){alert('Bitte wählen Sie zuerst mindestens eine Muskelgruppe aus.');return}
   modal.classList.add('on');
 };

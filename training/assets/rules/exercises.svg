@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Krafttraining">
-  <g fill="none" stroke="#246dad" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="32" cy="13" r="6" fill="#246dad" stroke="none"/>
-    <path d="M32 21v20M32 27L20 33M32 27l12 6M32 41L22 54M32 41l10 13"/>
-    <path d="M20 33l-5-8M44 33l5-8"/>
-    <path d="M9 23h12M43 23h12"/>
-    <path d="M11 19v8M19 19v8M45 19v8M53 19v8"/>
+  <g fill="#246dad" stroke="#246dad" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="10.5" r="5.5" stroke="none"/>
+    <rect x="29" y="18" width="6" height="21" rx="3" stroke="none"/>
+    <path d="M32 23 22 29 17 20M32 23l10 6 5-9M32 39 23 54M32 39l9 15" fill="none" stroke-width="4.6"/>
+    <path d="M8 20h18M38 20h18" fill="none" stroke-width="4.2"/>
+    <path d="M12 15v10M18 15v10M46 15v10M52 15v10" fill="none" stroke-width="4.2"/>
   </g>
 </svg>
