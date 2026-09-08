@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Krafttraining">
   <g fill="#246dad" stroke="#246dad" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="32" cy="10.5" r="5.5" stroke="none"/>
-    <rect x="29" y="18" width="6" height="21" rx="3" stroke="none"/>
-    <path d="M32 23 22 29 17 20M32 23l10 6 5-9M32 39 23 54M32 39l9 15" fill="none" stroke-width="4.6"/>
-    <path d="M8 20h18M38 20h18" fill="none" stroke-width="4.2"/>
-    <path d="M12 15v10M18 15v10M46 15v10M52 15v10" fill="none" stroke-width="4.2"/>
+    <circle cx="32" cy="10" r="5.8" stroke="none"/>
+    <path d="M26.5 18.5c0-2.2 1.8-4 4-4h3c2.2 0 4 1.8 4 4v16.2c0 2.4-1.9 4.3-4.3 4.3h-2.4c-2.4 0-4.3-1.9-4.3-4.3Z" stroke="none"/>
+    <path d="M27.5 22.5 20 19.8l-2.2 5.3 9.7 4.5M36.5 22.5l7.5-2.7 2.2 5.3-9.7 4.5" fill="none" stroke-width="6"/>
+    <path d="M28.5 37 23 53.8h7l3-10 3 10h7L37.5 37Z" stroke="none"/>
+    <path d="M8 20.5h15M41 20.5h15" fill="none" stroke-width="3.8"/>
+    <path d="M8.5 15.5v10M14 15.5v10M19.5 17v7M44.5 17v7M50 15.5v10M55.5 15.5v10" fill="none" stroke-width="4"/>
   </g>
 </svg>
