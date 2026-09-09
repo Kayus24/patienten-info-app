@@ -326,7 +326,7 @@ async function poster(){
   const images=await Promise.all(exercises.map(e=>loadImage(e.path)));
   const W=1200,M=55,contentW=W-M*2,scale=2;
   const exRows=Math.ceil(exercises.length/2),exH=90+exRows*245;
-  const H=260+190+exH+220+330+120+80;
+  const H=Math.max(1780,260+190+exH+220+330+120+80);
   const c=document.createElement('canvas');c.width=W*scale;c.height=H*scale;
   const x=c.getContext('2d');x.scale(scale,scale);x.fillStyle='#fff';x.fillRect(0,0,W,H);
 
