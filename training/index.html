@@ -265,7 +265,11 @@ render();
 
 function selectedExercises(){
   const byPath=new Map();
-  [...sel].sort((a,b)=>a-b).forEach(i=>D[i][1].forEach(e=>{if(!byPath.has(e[1]))byPath.set(e[1],e)}));
+  [...sel].sort((a,b)=>a-b).forEach(i=>D[i][1].forEach(e=>{
+    let item=byPath.get(e[1]);
+    if(!item){item={name:e[0],path:e[1],groups:[]};byPath.set(e[1],item)}
+    if(!item.groups.includes(D[i][0]))item.groups.push(D[i][0]);
+  }));
   return [...byPath.values()];
 }
 const modal=document.getElementById('modal');
@@ -319,12 +323,12 @@ async function poster(){
     loadImage('assets/rules/barbell.svg'),
     loadImage('assets/rules/heart.svg')
   ]);
-  const images=await Promise.all(exercises.map(e=>loadImage(e[1])));
-  const W=1200,M=55,contentW=W-M*2;
+  const images=await Promise.all(exercises.map(e=>loadImage(e.path)));
+  const W=1200,M=55,contentW=W-M*2,scale=2;
   const exRows=Math.ceil(exercises.length/2),exH=90+exRows*245;
   const H=260+190+exH+220+330+120+80;
-  const c=document.createElement('canvas');c.width=W;c.height=H;
-  const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,W,H);
+  const c=document.createElement('canvas');c.width=W*scale;c.height=H*scale;
+  const x=c.getContext('2d');x.scale(scale,scale);x.fillStyle='#fff';x.fillRect(0,0,W,H);
 
   x.fillStyle='#102b50';x.font='900 70px Arial';x.fillText('Trainingsregeln',M,90);
   x.font='900 34px Arial';x.fillStyle='#294d79';x.fillText('Für Ihr Krafttraining zu Hause',M,137);
@@ -344,8 +348,9 @@ async function poster(){
   exercises.forEach((e,idx)=>{
     const col=idx%2,row=Math.floor(idx/2),bx=M+155+col*455,by=ey+row*245,bw=420,bh=185;
     x.strokeStyle='#d9e2e7';x.lineWidth=2;x.strokeRect(bx,by,bw,bh);
-    drawContained(x,images[idx],bx+8,by+8,bw-16,bh-42);
-    x.fillStyle='#102b50';x.font='900 20px Arial';x.fillText(e[0],bx+12,by+174);
+    drawContained(x,images[idx],bx+8,by+8,bw-16,bh-54);
+    x.fillStyle='#102b50';x.font='900 20px Arial';x.fillText(e.name,bx+12,by+159);
+    x.fillStyle='#294d79';x.font='700 16px Arial';x.fillText(e.groups.join(' · '),bx+12,by+180);
   });
   y+=exH+20;
 

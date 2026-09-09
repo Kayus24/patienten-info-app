@@ -1,10 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Krafttraining">
   <g fill="#246dad" stroke="#246dad" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="32" cy="10" r="5.8" stroke="none"/>
-    <path d="M26.5 18.5c0-2.2 1.8-4 4-4h3c2.2 0 4 1.8 4 4v16.2c0 2.4-1.9 4.3-4.3 4.3h-2.4c-2.4 0-4.3-1.9-4.3-4.3Z" stroke="none"/>
-    <path d="M27.5 22.5 20 19.8l-2.2 5.3 9.7 4.5M36.5 22.5l7.5-2.7 2.2 5.3-9.7 4.5" fill="none" stroke-width="6"/>
-    <path d="M28.5 37 23 53.8h7l3-10 3 10h7L37.5 37Z" stroke="none"/>
-    <path d="M8 20.5h15M41 20.5h15" fill="none" stroke-width="3.8"/>
-    <path d="M8.5 15.5v10M14 15.5v10M19.5 17v7M44.5 17v7M50 15.5v10M55.5 15.5v10" fill="none" stroke-width="4"/>
+    <circle cx="42" cy="12.5" r="5.5" stroke="none"/>
+    <path d="M34.8 20.5 47.8 24.4 28.5 39.2 20.8 34.2 30.8 21.8Z" stroke="none"/>
+    <path d="M36.5 22.5 27.5 35.5 23 47.5M42.2 24.5 34.5 38.5 31 47.5" fill="none" stroke-width="5.6"/>
+    <path d="M25 34 18.5 47.5 11.5 51.5 18 53.5 29 48 34 40 39 51 47.5 53.5 51 50.5 42 46.5 38 34Z" stroke="none"/>
+    <circle cx="23" cy="47.5" r="2.6" stroke="none"/>
+    <circle cx="31" cy="47.5" r="2.6" stroke="none"/>
+    <path d="M7 48h50" fill="none" stroke-width="4"/>
+    <path d="M11 41v14M15.5 40v16M20 43v10M44 43v10M48.5 40v16M53 41v14" fill="none" stroke-width="4"/>
   </g>
 </svg>
