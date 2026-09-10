@@ -215,19 +215,36 @@ const D=[
 ['Beine · hintere Kette',[['Deadlift','assets/canonical-v1/deadlift.webp'],['Kniebeuger','assets/canonical-v1/leg-curl.webp']]],
 ['Bauch',[['Plank','assets/canonical-v1/plank.webp'],['Beinheben','assets/canonical-v1/leg-raise.webp']]]
 ];
-const CACHE='?v=original-logo-v5-20260907';
-const sel=new Set(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips'),fab=document.getElementById('fab'),badge=document.getElementById('badge');
+const CACHE='?v=original-logo-v5-20260907',RULES_CACHE='?v=v9-option4-20260910';
+const sel=new Set(),selectionTokens=new Map(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips'),fab=document.getElementById('fab'),badge=document.getElementById('badge');
+let nextSelectionToken=0,displayedCount=0,pendingBadge=false,badgeImpactTimer=0;
 
 function updateBadge(){
-  const n=sel.size;
-  badge.textContent=String(n);
+  const n=displayedCount;
+  badge.textContent=n?String(n):'';
   badge.hidden=n===0;
-  badge.setAttribute('aria-label',n+' Muskelgruppe'+(n===1?'':'n')+' ausgewählt');
+  if(n)badge.setAttribute('aria-label',n+' Muskelgruppe'+(n===1?'':'n')+' ausgewählt');
+  else badge.removeAttribute('aria-label');
 }
 
-function animateSelection(startRect){
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const isFirstSelection=sel.size===1;
+function flashBadge(){
+  badge.classList.remove('badge-impact');
+  void badge.offsetWidth;
+  badge.classList.add('badge-impact');
+  clearTimeout(badgeImpactTimer);
+  badgeImpactTimer=setTimeout(()=>badge.classList.remove('badge-impact'),260);
+}
+
+function animateSelection(startRect,sourceIndex,selectionToken){
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){
+    displayedCount=Math.min(sel.size,displayedCount+1);
+    pendingBadge=false;
+    updateBadge();
+    return;
+  }
+  const isFirstSelection=displayedCount===0&&!pendingBadge;
+  if(isFirstSelection)pendingBadge=true;
   if(isFirstSelection){badge.hidden=false;badge.classList.add('badge-staging')}
   const endRect=badge.getBoundingClientRect(),size=11;
   const startX=startRect.left+startRect.width/2-size/2,startY=startRect.top+startRect.height/2-size/2;
@@ -248,18 +265,43 @@ function animateSelection(startRect){
     {transform:'translate3d('+(startX+dx*.72)+'px,'+(endY-lift*.55)+'px,0)'},
     {transform:'translate3d('+endX+'px,'+endY+'px,0)'}
   ],{duration:550,easing:'cubic-bezier(.22,.72,.34,1)',fill:'forwards'});
-  const remove=()=>{ball.remove();badge.classList.remove('badge-staging','badge-impact')};
+  const remove=()=>{ball.remove();if(!sel.size){pendingBadge=false;badge.classList.remove('badge-staging','badge-impact')}};
   const settle=()=>{
-    if(!sel.size){badge.hidden=true;remove();return}
-    badge.classList.remove('badge-staging');
-    badge.classList.add('badge-impact');
+    if(selectionTokens.get(sourceIndex)!==selectionToken){
+      if(!sel.size){displayedCount=0;pendingBadge=false;badge.hidden=true;updateBadge()}
+      remove();
+      return;
+    }
+    if(!sel.size){displayedCount=0;pendingBadge=false;badge.hidden=true;remove();return}
+    if(isFirstSelection){
+      const impact=ball.animate([
+        {transform:'translate3d('+endX+'px,'+endY+'px,0) scale(1)',opacity:1,backgroundColor:'#7e878e'},
+        {transform:'translate3d('+endX+'px,'+endY+'px,0) scale(2.1)',opacity:1,backgroundColor:'#102b50'}
+      ],{duration:160,easing:'ease-out',fill:'forwards'});
+      impact.addEventListener('finish',()=>{
+        displayedCount=Math.min(sel.size,displayedCount+1);
+        pendingBadge=false;
+        badge.classList.remove('badge-staging');
+        updateBadge();
+        flashBadge();
+        remove();
+      },{once:true});
+      impact.addEventListener('cancel',remove,{once:true});
+      return;
+    }
     const impact=ball.animate([
       {transform:'translate3d('+endX+'px,'+endY+'px,0) scale(1)',opacity:1},
       {transform:'translate3d('+endX+'px,'+endY+'px,0) scale(.22)',opacity:0}
     ],{duration:140,easing:'ease-out',fill:'forwards'});
-    impact.addEventListener('finish',remove,{once:true});
+    impact.addEventListener('finish',()=>{
+      displayedCount=Math.min(sel.size,displayedCount+1);
+      if(displayedCount===1)pendingBadge=false;
+      badge.classList.remove('badge-staging');
+      updateBadge();
+      flashBadge();
+      remove();
+    },{once:true});
     impact.addEventListener('cancel',remove,{once:true});
-    setTimeout(()=>badge.classList.remove('badge-impact'),260);
   };
   animation.addEventListener('finish',settle,{once:true});
   animation.addEventListener('cancel',remove,{once:true});
@@ -274,18 +316,29 @@ function render(){
     b.innerHTML='<div class="cardHead"><h3>'+d[0]+'</h3><span class="tag">2 Übungen</span></div><div class="exgrid">'+d[1].map(e=>'<div class="exercise"><div class="thumb"><img src="'+e[1]+CACHE+'" alt="'+e[0]+'" loading="eager"></div><b>'+e[0]+'</b></div>').join('')+'</div>';
     b.onclick=()=>{
       const wasSelected=sel.has(i),startRect=b.getBoundingClientRect();
-      wasSelected?sel.delete(i):sel.add(i);
+      if(wasSelected){
+        sel.delete(i);
+        selectionTokens.delete(i);
+      }else{
+        sel.add(i);
+        selectionTokens.set(i,++nextSelectionToken);
+      }
+      if(wasSelected){
+        displayedCount=Math.min(displayedCount,sel.size);
+        if(!sel.size)pendingBadge=false;
+        updateBadge();
+      }
       render();
-      if(!wasSelected)animateSelection(startRect);
+      if(!wasSelected)animateSelection(startRect,i,selectionTokens.get(i));
     };
     grid.appendChild(b);
   });
   count.textContent=sel.size+' Muskelgruppe'+(sel.size===1?'':'n')+' ausgewählt';
   const c=[...sel].sort((a,b)=>a-b).map(i=>'<span class="chip">'+D[i][0]+': '+D[i][1].map(e=>e[0]).join(' · ')+'</span>');
   chips.innerHTML=c.join('')||'<span class="chip">Noch nichts ausgewählt.</span>';
-  updateBadge();
 }
 render();
+updateBadge();
 
 function selectedExercises(){
   const byPath=new Map();
@@ -343,7 +396,7 @@ async function poster(){
   const [logo,calendarIcon,exerciseIcon,barbellIcon,heartIcon]=await Promise.all([
     loadImage('assets/working-motion_logo.png'),
     loadImage('assets/rules/calendar.svg'),
-    loadImage('assets/rules/exercises.svg?v=v7'),
+    loadImage('assets/rules/exercises.svg'+RULES_CACHE),
     loadImage('assets/rules/barbell.svg'),
     loadImage('assets/rules/heart.svg')
   ]);
