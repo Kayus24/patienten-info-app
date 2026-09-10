@@ -349,8 +349,10 @@ async function poster(){
   ]);
   const images=await Promise.all(exercises.map(e=>loadImage(e.path)));
   const W=1200,M=55,contentW=W-M*2,scale=2;
-  const exRows=Math.ceil(exercises.length/2),exH=90+exRows*245;
-  const H=Math.max(1780,260+190+exH+220+330+120+80);
+  const denseGrid=exercises.length>4;
+  const exRows=Math.ceil(exercises.length/(denseGrid?3:2));
+  const exH=denseGrid?90+exRows*112:90+exRows*245;
+  const H=1780;
   const c=document.createElement('canvas');c.width=W*scale;c.height=H*scale;
   const x=c.getContext('2d');x.scale(scale,scale);x.fillStyle='#fff';x.fillRect(0,0,W,H);
 
@@ -370,11 +372,16 @@ async function poster(){
   x.fillStyle='#246dad';x.font='900 36px Arial';x.fillText('Übungen',M+155,y+55);
   let ey=y+78;
   exercises.forEach((e,idx)=>{
-    const col=idx%2,row=Math.floor(idx/2),bx=M+155+col*455,by=ey+row*245,bw=420,bh=185;
+    const cols=denseGrid?3:2;
+    const col=idx%cols,row=Math.floor(idx/cols);
+    const gap=denseGrid?20:35,step=denseGrid?112:245;
+    const bw=denseGrid?(contentW-155-gap*(cols-1))/cols:420;
+    const bh=denseGrid?100:185;
+    const bx=M+155+col*(bw+gap),by=ey+row*step;
     x.strokeStyle='#d9e2e7';x.lineWidth=2;x.strokeRect(bx,by,bw,bh);
-    drawContained(x,images[idx],bx+8,by+8,bw-16,bh-54);
-    x.fillStyle='#102b50';x.font='900 20px Arial';x.fillText(e.name,bx+12,by+159);
-    x.fillStyle='#294d79';x.font='700 16px Arial';x.fillText(e.groups.join(' · '),bx+12,by+180);
+    drawContained(x,images[idx],bx+8,by+8,bw-16,bh-(denseGrid?42:54));
+    x.fillStyle='#102b50';x.font=denseGrid?'900 14px Arial':'900 20px Arial';x.fillText(e.name,bx+12,by+(denseGrid?77:159));
+    x.fillStyle='#294d79';x.font=denseGrid?'700 12px Arial':'700 16px Arial';x.fillText(e.groups.join(' · '),bx+12,by+(denseGrid?95:180));
   });
   y+=exH+20;
 
