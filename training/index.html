@@ -215,7 +215,7 @@ const D=[
 ['Beine · hintere Kette',[['Deadlift','assets/canonical-v1/deadlift.webp'],['Kniebeuger','assets/canonical-v1/leg-curl.webp']]],
 ['Bauch',[['Plank','assets/canonical-v1/plank.webp'],['Beinheben','assets/canonical-v1/leg-raise.webp']]]
 ];
-const CACHE='?v=original-logo-v5-20260907',RULES_CACHE='?v=v9-option4-20260910';
+const CACHE='?v=original-logo-v5-20260907',RULES_CACHE='?v=v9-option4-20260910',OPTION4_CACHE='?v=photo1-20260910';
 const sel=new Set(),selectionTokens=new Map(),grid=document.getElementById('grid'),count=document.getElementById('count'),chips=document.getElementById('chips'),fab=document.getElementById('fab'),badge=document.getElementById('badge');
 let nextSelectionToken=0,displayedCount=0,pendingBadge=false,badgeImpactTimer=0;
 
@@ -396,7 +396,7 @@ async function poster(){
   const [logo,calendarIcon,exerciseIcon,barbellIcon,heartIcon]=await Promise.all([
     loadImage('assets/working-motion_logo.png'),
     loadImage('assets/rules/calendar.svg'),
-    loadImage('assets/rules/exercises.svg'+RULES_CACHE),
+    loadImage('assets/rules/option4-photo1.jpg'+OPTION4_CACHE),
     loadImage('assets/rules/barbell.svg'),
     loadImage('assets/rules/heart.svg')
   ]);
