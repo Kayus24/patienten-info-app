@@ -231,7 +231,12 @@ function animateSelection(startRect){
   if(isFirstSelection){badge.hidden=false;badge.classList.add('badge-staging')}
   const endRect=badge.getBoundingClientRect(),size=11;
   const startX=startRect.left+startRect.width/2-size/2,startY=startRect.top+startRect.height/2-size/2;
-  const endX=endRect.left+endRect.width/2-size/2,endY=endRect.top+endRect.height/2-size/2;
+  const endCX=endRect.left+endRect.width/2,endCY=endRect.top+endRect.height/2;
+  const deltaX=endCX-(startX+size/2),deltaY=endCY-(startY+size/2),distance=Math.max(1,Math.hypot(deltaX,deltaY));
+  const edgeX=Math.max(0,endRect.width/2-size/2-1),edgeY=Math.max(0,endRect.height/2-size/2-1);
+  const targetCX=isFirstSelection?endCX:endCX-deltaX/distance*edgeX;
+  const targetCY=isFirstSelection?endCY:endCY-deltaY/distance*edgeY;
+  const endX=targetCX-size/2,endY=targetCY-size/2;
   const dx=endX-startX,lift=Math.max(70,Math.min(160,Math.abs(dx)*.25+55));
   const ball=document.createElement('span');
   ball.className='selection-ball';
