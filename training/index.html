@@ -72,7 +72,10 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
 .hint{font-size:.88rem;line-height:1.45;color:#536270}
 .fab{position:fixed;right:18px;bottom:18px;width:62px;height:62px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#fff;box-shadow:0 14px 34px rgba(243,108,33,.35);z-index:10;cursor:pointer}
 .fabIcon{width:30px;height:30px;display:block}
-.badge{position:absolute;top:-3px;left:-3px;min-width:23px;height:23px;padding:0 5px;border:2px solid #fff;border-radius:999px;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:.72rem;line-height:1;font-weight:900;box-shadow:0 2px 8px rgba(16,43,80,.3);z-index:1}
+.badge{position:absolute;top:-3px;left:-3px;min-width:23px;height:23px;padding:0 5px;border:2px solid #fff;border-radius:999px;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:.72rem;line-height:1;font-weight:900;box-shadow:0 2px 8px rgba(16,43,80,.3);z-index:1;transform-origin:center;transition:transform 180ms ease,opacity 180ms ease}
+.badge.badge-staging{opacity:0;transform:scale(.45)}
+.badge.badge-impact{animation:badge-impact 220ms ease-out}
+@keyframes badge-impact{0%{transform:scale(1)}45%{transform:scale(1.12)}100%{transform:scale(1)}}
 .badge[hidden]{display:none}
 .selection-ball{position:fixed;left:0;top:0;width:11px;height:11px;border-radius:50%;background:var(--gray);box-shadow:0 2px 7px rgba(29,39,51,.25);pointer-events:none;z-index:30;will-change:transform}
 .modal{position:fixed;inset:0;background:#0008;display:none;place-items:center;padding:18px;z-index:20}
@@ -116,6 +119,8 @@ h1{color:var(--navy);font-size:clamp(2.5rem,7vw,5.2rem);line-height:.92;letter-s
 }
 @media(prefers-reduced-motion:reduce){
   .card{transition:none}
+  .badge{transition:none}
+  .badge.badge-impact{animation:none}
 }
 </style>
 </head>
@@ -222,6 +227,8 @@ function updateBadge(){
 
 function animateSelection(startRect){
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const isFirstSelection=sel.size===1;
+  if(isFirstSelection){badge.hidden=false;badge.classList.add('badge-staging')}
   const endRect=badge.getBoundingClientRect(),size=11;
   const startX=startRect.left+startRect.width/2-size/2,startY=startRect.top+startRect.height/2-size/2;
   const endX=endRect.left+endRect.width/2-size/2,endY=endRect.top+endRect.height/2-size/2;
@@ -236,8 +243,20 @@ function animateSelection(startRect){
     {transform:'translate3d('+(startX+dx*.72)+'px,'+(endY-lift*.55)+'px,0)'},
     {transform:'translate3d('+endX+'px,'+endY+'px,0)'}
   ],{duration:550,easing:'cubic-bezier(.22,.72,.34,1)',fill:'forwards'});
-  const remove=()=>ball.remove();
-  animation.addEventListener('finish',remove,{once:true});
+  const remove=()=>{ball.remove();badge.classList.remove('badge-staging','badge-impact')};
+  const settle=()=>{
+    if(!sel.size){badge.hidden=true;remove();return}
+    badge.classList.remove('badge-staging');
+    badge.classList.add('badge-impact');
+    const impact=ball.animate([
+      {transform:'translate3d('+endX+'px,'+endY+'px,0) scale(1)',opacity:1},
+      {transform:'translate3d('+endX+'px,'+endY+'px,0) scale(.22)',opacity:0}
+    ],{duration:140,easing:'ease-out',fill:'forwards'});
+    impact.addEventListener('finish',remove,{once:true});
+    impact.addEventListener('cancel',remove,{once:true});
+    setTimeout(()=>badge.classList.remove('badge-impact'),260);
+  };
+  animation.addEventListener('finish',settle,{once:true});
   animation.addEventListener('cancel',remove,{once:true});
 }
 
