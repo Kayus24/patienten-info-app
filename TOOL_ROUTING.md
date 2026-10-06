@@ -21,3 +21,9 @@ Inherit: `Kayus24/vibe-shared-knowledge/tool-routing/BASELINE.md`.
 - Keep sources coupled to claims.
 - No patient-specific data.
 - Medical text changes require source verification before publication.
+## Directory routing
+- `index.html`: main application content and UI.
+- `training/**`: training-specific content/assets; keep separate from general waiting-room information.
+- `icons/**`: static icon assets only.
+- `manifest.webmanifest` and `service-worker.js`: PWA/install/cache behavior; touch only for PWA-specific tasks and test accordingly.
+- QR assets in root are deployment/navigation assets, not content source of truth.
