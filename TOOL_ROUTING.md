@@ -9,10 +9,10 @@ Inherit: `Kayus24/vibe-shared-knowledge/tool-routing/BASELINE.md`.
 
 ## Preferred hierarchy
 - Code/repo/deploy state: **GitHub**
-- Medical/scientific claim research: **Consensus**
-- Public source verification/extraction: **Firecrawl**
-- PWA/browser API questions: **Context7**
-- UI regression: existing browser tests/Playwright; **Firecrawl Interact** only for a small external-browser check
+- Medical/scientific claim discovery/synthesis: **Consensus**
+- Primary-source/full-text retrieval, current public source verification and site collection: **Firecrawl Search/Scrape/Paper Research**
+- PWA/browser API questions: **Context7 -> official upstream -> Firecrawl Developer Search**
+- UI regression: existing browser tests/Playwright; **Firecrawl Interact** for an independent simple public-browser check
 - Device-specific PWA behavior: **Test Android Apps/ADB**
 - Local build/test: **Remote Desktop Commander**
 - Visual design mockups: **Figma**; generated decorative assets: **OpenArt**
